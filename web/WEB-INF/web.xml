@@ -20,6 +20,10 @@
         <servlet-name>CerrarSesionC</servlet-name>
         <servlet-class>Servlet.CerrarSesionC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InicioC</servlet-name>
+        <servlet-class>Servlet.InicioC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesionC</servlet-name>
         <url-pattern>/IniciarSesionC</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesionC</servlet-name>
         <url-pattern>/CerrarSesionC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InicioC</servlet-name>
+        <url-pattern>/InicioC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

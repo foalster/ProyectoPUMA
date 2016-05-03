@@ -33,7 +33,7 @@
         <div class="menu">
             <nav>
                 <ul>
-                    <li><a href="index.jsp">PUMA</a></li>
+                    <li><a href="InicioC">PUMA</a></li>
                     
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
