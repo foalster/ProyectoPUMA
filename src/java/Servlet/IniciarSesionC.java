@@ -9,6 +9,7 @@ import Controlador.Conexion;
 import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -42,13 +43,19 @@ public class IniciarSesionC extends HttpServlet {
         
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
+        ArrayList usu = new ArrayList();
+        int id = 0;
         co.conectar();
-        Usuario usu = new Usuario();
+        usu = co.getId(usuario);
         
+        for(int i = 0; i < usu.size(); i++){
+                    id = ((Usuario)usu.get(i)).getIdUsuario();
+        }
         
         if(co.iniciarSesion(usuario,password)){
             HttpSession session=request.getSession();
             session.setAttribute("usuario",usuario); 
+            session.setAttribute("id",id);
             request.getRequestDispatcher("Inicio.jsp").include(request, response);  
             //response.sendRedirect("Inicio.jsp");
         } else {

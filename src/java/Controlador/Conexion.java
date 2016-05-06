@@ -136,19 +136,22 @@ public class Conexion {
         }
         return usuarios;
     }
-    public Usuario getUsuario(String username) throws Exception{
-        Usuario u = new Usuario();
+    
+    public ArrayList getId(String usuario) throws Exception{
+        ArrayList idUsuario = new ArrayList();
         try{
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT idUsuario FROM USUARIO WHERE usuario = '" + username + "'");
+            rs = stmt.executeQuery("SELECT IDUSUARIO FROM USUARIO WHERE USUARIO = '"+ usuario +"'");
             while(rs.next()){
+                Usuario u = new Usuario();
                 u.setIdUsuario(rs.getInt(1));
+                idUsuario.add(u);
             }
         }catch(Exception ex){
             System.out.println("Error al recuperar los datos de la entidad usuario "
                     + ex.getMessage());
         }
-        return u;
+        return idUsuario;
     }
     
      public LinkedList<Calculadora> getCalculadoras()
