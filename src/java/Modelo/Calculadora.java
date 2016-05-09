@@ -16,6 +16,7 @@ public class Calculadora {
     private String modelo;
     private int idPrestamista;
     private boolean disponible;
+    private int idTipo;
     
     public int getIdCalculadora() {
         return idCalculadora;
@@ -56,4 +57,13 @@ public class Calculadora {
     public void setIdPrestamista (int idPrestamista){
         this.idPrestamista = idPrestamista;
     }
+    
+    public int getIdTipo(){
+        return idTipo;    
+    }
+    
+    public void setIdTipo (int idTipo){
+        this.idTipo = idTipo;
+    }
+    
 }

@@ -41,22 +41,14 @@ public class CrearObjeto extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         HttpSession session=request.getSession();
-        String usuario = (String) session.getAttribute("usuario");
-        
+        int id = (Integer) session.getAttribute("id");//
         String marca = request.getParameter("marca");
         String modelo = request.getParameter("modelo");
-        String tipo = request.getParameter("tipo");
-        int id= 0;
-        Usuario u = new Usuario();
+        int tipo = Integer.parseInt(request.getParameter("tipo"));
+       
+        System.out.println(tipo + " " + id);
         
-        co.conectar();
-        u.getUsuario(usuario);
-        id = u.getIdUsuario();
-        co.desconectar();
-        
-        System.out.println(id);
-        
-        if(marca.length() != 0 && modelo.length() !=0 && tipo.length() != 0){
+        if(marca.length() != 0 && modelo.length() !=0 && tipo != 0){
             co.crear(marca, modelo, id, tipo);
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");

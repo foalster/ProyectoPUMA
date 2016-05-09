@@ -1,0 +1,265 @@
+
+#headingOne{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #3080db;
+    border-bottom: none; 
+}
+#collapseOne {
+    background: #3080db;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseOne input{
+    color: black; 
+    border-radius: 50px; 
+   
+}
+
+#collapseOne b input{
+    color: #fff;
+    border: none;
+    background: none;
+}
+
+#collapseOne select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseOne option{
+    color: black;
+    border: none;
+    
+}
+
+#headingTwo{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #4F90DB;
+    border-bottom: none; 
+}
+#collapseTwo {
+    background: #4F90DB;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseTwo input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseTwo select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseTwo option{
+    color: black;
+    border: none;
+    
+}
+
+#headingThree{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #6EA1DB;
+    border-bottom: none; 
+}
+#collapseThree{
+    background: #6EA1DB;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseThree input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseThree select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseThree option{
+    color: black;
+    border: none;
+    
+}
+
+
+
+#headingFour{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #8CB1DB;
+    border-bottom: none; 
+}
+#collapseFour{
+    background: #8CB1DB;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseFour input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseFour select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseFour option{
+    color: black;
+    border: none;
+    
+}
+
+
+
+
+
+#headingFive{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #C1CDDB;
+    border-bottom: none; 
+}
+#collapseFive{
+    background: #C1CDDB;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseFive input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseFive select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseFive option{
+    color: black;
+    border: none;
+    
+}
+
+#headingSix{
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #DBDBDB;
+    border-bottom: none; 
+}
+#collapseSix{
+    background: #DBDBDB;
+    color: #fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseSix input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseSix select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseSix option{
+    color: black;
+    border: none;
+    
+}
+
+
+#headingSeven{
+    color: #000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    background: #FFF;
+    border-bottom: none; 
+}
+#collapseSeven{
+    background: #FFF;
+    color: #000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#collapseSeven input{
+    color: black;
+    border: none;
+    background: none;
+}
+
+#collapseSeven select{
+    color: black;
+    border: none;
+    
+}
+
+#collapseSeven option{
+    color: black;
+    border: none;
+    
+}

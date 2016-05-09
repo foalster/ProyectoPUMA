@@ -225,27 +225,45 @@ public class Conexion {
         return true;
     }
     
-    public boolean crear(String marca, String modelo, int idUsuario, String tipo){
-        try {
-            String query = "INSERT INTO calculadora (marca, modelo, disponible, idprestamista, idtipo) VALUES('"+marca+"','"+modelo+"',TRUE," + idUsuario + "," + tipo + ");";
-            stmt.executeUpdate(query);
-            return true;
+    public boolean crear(String marca, String modelo, int idUsuario, int tipo){
+        try{
+            ArrayList calculadora = new ArrayList();
+            PreparedStatement pst = con.prepareStatement("INSERT INTO calculadora (marca, modelo, disponible, idprestamista, idtipo) VALUES('"+marca+"','"+modelo+"',TRUE," + idUsuario + "," + tipo + ");");
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                Calculadora u = new Calculadora();
+                u.setMarca(rs.getString(1));
+                u.setModelo(rs.getString(2));
+                u.setDisponible(rs.getBoolean(3));
+                u.setIdPrestamista(rs.getInt(4));
+                u.setIdTipo(rs.getInt(5));
+                calculadora.add(u);
+            }
+            if(calculadora.isEmpty())
+                return false;
         }  catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
-            return false;
         }
+        return true;
     }
     
     
-    public ArrayList getCalculadoras(String idprestamista) throws SQLException {
-        ArrayList calculadoras = new ArrayList();
+    
+    public LinkedList<Calculadora> getCalculadoras(int idprestamista) throws SQLException {
+        LinkedList<Calculadora> calculadoras = new LinkedList<Calculadora>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT idcalculadora From Calculadora Where idprestamista = " + idprestamista);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                calculadoras.add(rs.getString("idCalculadora"));
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM CALCULADORA NATURAL JOIN TIPO WHERE IDPRESTAMISTA = " + idprestamista);
+            while (rs.next()){
+                Calculadora contacto = new Calculadora();
+                contacto.setId(rs.getInt("idcalculadora"));
+                contacto.setMarca(rs.getString("marca"));
+                contacto.setModelo(rs.getString("modelo"));
+                contacto.setDisponible(rs.getBoolean("disponible"));
+                calculadoras.add(contacto);
             }
             rs.close();
+            stmt.close();
         } catch (Exception ex) {
             System.out.println("Error al recuperar los datos de la entidad calculadoras "
                     + ex.getMessage());

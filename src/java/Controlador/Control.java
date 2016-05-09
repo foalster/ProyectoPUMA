@@ -62,5 +62,15 @@ public class Control {
         }
         return calculadoras;
     }
+    
+    public LinkedList<Calculadora> getCalculadoras(int idPrestamista) throws Exception {
+        LinkedList<Calculadora> calculadoras = new LinkedList<Calculadora>();
+        try {
+            calculadoras = conexionBD.getCalculadoras(idPrestamista);
+        } catch (Exception ex) {
+            System.out.println("Error en la conexión: " + ex.getMessage());
+        }
+        return calculadoras;
+    }
 
 }
