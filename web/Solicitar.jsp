@@ -20,7 +20,7 @@
         <title>Formulario</title>
     </head>
     
-    <body>
+    <body style = "background-color: #666">
         <!--<p>Me ha llegado <%= request.getAttribute("idSeleccionada") %></p>-->
         <%
             HttpSession sessions = request.getSession(false);

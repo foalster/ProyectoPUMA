@@ -101,3 +101,13 @@ nav ul a:hover{
     float: right;
     margin-right: 8%
 }
+
+input[type="text"]{
+    border-radius: 50px;
+    text-align: center;
+}
+
+input[type="password"]{
+    border-radius: 50px;
+    text-align: center;
+}

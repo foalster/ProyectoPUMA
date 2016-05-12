@@ -39,7 +39,7 @@
                             </script>
         <title>PUMA</title>
     </head>
-    <body>
+    <body style = "background-color: #666; color: #fff">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
@@ -78,7 +78,7 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
          <form method="post" action="CrearObjeto">
               <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
-                    Modelo: <input type="text" name="modelo"/><br/><br/>
+                    Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
                     Tipo: <select name="tipo" required="">
                         <option value=0>Seleccione...</option>
                         <option value=1 >Básica</option>

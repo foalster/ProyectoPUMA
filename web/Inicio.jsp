@@ -37,7 +37,7 @@
                             </script>
         <title>PUMA</title>
     </head>
-    <body>
+    <body style = "background-color: #666">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");

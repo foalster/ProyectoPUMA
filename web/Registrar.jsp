@@ -27,7 +27,7 @@
         </script>
     </head>
     
-    <body onload="init()">
+    <body onload="init()" style = "background-color: #666; font-weight: bold">
         
         <div class="menu">
             <nav>
@@ -42,13 +42,13 @@
         <div class = "container">
             <div class="wrapper">
                 <form method="post" action="RegistrarC">
-                    <h1 class="form-signin-heading">Regístrate</h1>
+                    <h1 class="form-signin-heading">Regístrate</h1><br/>
                     Usuario: <input type="text" name="usuario"/><br/><br/>
                     Contraseña: <input type="password" name="password"/><br/>
                     Nombre(s): <input type="text" name="nombre"/><br/><br/>
                     Apellido Paterno: <input type="text" name="appat"/><br/><br/>
                     Apellido Materno: <input type="text" name="apmat"/><br/><br/>
-                    Fecha de Nacimiento: <input type="text" name="fechanac" id="date"><br/><br/>
+                    Fecha de Nacimiento: <input type="text" name="fechanac" id="date" readonly><br/><br/>
                     Genero: <select name="genero" required="">
                         <option value="">Seleccione...</option>
                         <option value="H">Hombre</option>
