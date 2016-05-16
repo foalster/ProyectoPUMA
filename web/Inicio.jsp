@@ -113,7 +113,6 @@
             <%request.setAttribute("seleccionada", new Integer(idSeleccionada));%>
             
     <form action="">
-    <input type="hidden" name="hidden" value=""idSeleccionada >
-    <input type="submit" value="submit"></form>
+
     </body>
 </html>
