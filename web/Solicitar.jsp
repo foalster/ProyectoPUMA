@@ -48,8 +48,8 @@
                 <form method="post" action="SolicitarC">
                     <h1 class="form-signin-heading">Solicita</h1>
                     Tiempo de prestamo: <input type="text" name="tiempo"/><br/><br/>
-                    Lugar de entrega: <input type="text" name="lugar"/><br/><br/>
-                    Motivo: <br/><input type="text" name="motivo" id ="motivo"/><br/><br/><br/>
+                    Lugar de entrega: <input type="text" name="lugar"/><br/><br/>                   
+                    Motivo: <br/><textarea name="comentarios" rows="10" cols="40"></textarea><br/><br/><br/>
                     <input type="submit" value="Solicitar"/>
                 </form>
             </div>
