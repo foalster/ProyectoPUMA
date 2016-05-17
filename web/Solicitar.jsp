@@ -91,7 +91,7 @@
                     consulta.desconectar();
 
                     for (int i = 0; i < lista.size(); i++) {
-                        if (lista.get(i).getDisponible()) {
+                        if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo()== 1) ) {
                             nombre = lista.get(i).getIdCalculadora();
                             lista.get(i).getIdCalculadora();
                             out.println("<tr>");

@@ -167,6 +167,7 @@ public class Conexion {
             contacto.setMarca(rs.getString("marca"));
             contacto.setModelo(rs.getString("modelo"));
             contacto.setDisponible(rs.getBoolean("disponible"));
+            contacto.setIdTipo(rs.getInt("idTipo"));
             listaContactos.add(contacto);
          }
          rs.close();
