@@ -23,7 +23,7 @@ public class Conexion {
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private String url = "jdbc:postgresql://localhost:5432/PUMA";
+    private String url = "jdbc:postgresql://localhost:5432/ProyectoPUMA";
     private String user ="IS1";
     private String pass = "hola123";
     private String drive = "org.postgresql.Driver";
