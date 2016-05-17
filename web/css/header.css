@@ -111,3 +111,14 @@ input[type="password"]{
     border-radius: 50px;
     text-align: center;
 }
+
+form input{
+    border-radius: 50px;
+    text-align: center;
+}
+
+
+#Solicitar{
+    border-radius: 50px;
+    text-align: center;
+}
