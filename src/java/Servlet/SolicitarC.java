@@ -38,14 +38,13 @@ public class SolicitarC extends HttpServlet {
         //String tpm = Inicio.idSeleccionada;
         Integer variable = (Integer)request.getAttribute("seleccionada");
         
-        
+        int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));
         String tiempo = request.getParameter("tiempo");
         String lugar = request.getParameter("lugar");
         String motivo = request.getParameter("motivo");
         
         
-        if(tiempo.length() != 0 && lugar.length() != 0 && motivo.length() != 0){
-            
+        if(tiempo.length() != 0 && lugar.length() != 0 && motivo.length() != 0 && idCalculadora != 0){            
             System.out.println(" aaaa" + variable );
             response.sendRedirect("Inicio.jsp");
         } else{

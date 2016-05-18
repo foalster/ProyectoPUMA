@@ -60,7 +60,12 @@
 }
 
 #collapseTwo input{
-    color: black;
+    color: black; 
+    border-radius: 50px; 
+}
+
+#collapseTwo b input{
+    color: #fff;
     border: none;
     background: none;
 }

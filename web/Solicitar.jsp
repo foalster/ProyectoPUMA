@@ -66,7 +66,7 @@
             <div class="container-left">
                 <form id="formulario" method="post" action="SolicitarC">                 
                     <div id="caja">
-                        Id <input type="text" style="color: #333;" id="count" value=""><br/><br/>
+                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0"><br/><br/>
                     </div>
                     Tiempo de prestamo: <input type="text" style="color: #333;" name="tiempo"/><br/><br/>
                     Lugar de entrega: <input type="text" style="color: #333;" name="lugar"/><br/><br/>

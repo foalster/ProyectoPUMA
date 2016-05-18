@@ -275,9 +275,8 @@ public class Conexion {
     public boolean eliminaCalculadora(int idcalculadora) throws SQLException {
         boolean b = false;
         try {
-            String seleccio = "DELETE FROM calculadora WHERE idcalculadora = ?";
+            String seleccio = "DELETE FROM calculadora WHERE idcalculadora=" + idcalculadora;
             PreparedStatement ps = con.prepareStatement(seleccio);
-            ps.setInt(1, idcalculadora);
             ps.executeUpdate();
             b = true;
         } catch (Exception ex) {

@@ -6,7 +6,6 @@
 package Servlet;
 
 import Controlador.Conexion;
-import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -61,7 +60,7 @@ public class CrearObjeto extends HttpServlet {
                                 "</div>");
                     out.println("</body>");
                     out.println("</html>");
-                    request.getRequestDispatcher("Inicio.jsp").include(request, response);
+                    request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
         }else{
             
         }
