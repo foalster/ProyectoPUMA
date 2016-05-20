@@ -7,6 +7,7 @@
 
 
 
+<%@page import="Modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.Calculadora"%>
 <jsp:useBean id="consulta" class="Controlador.Control"></jsp:useBean>
@@ -202,7 +203,28 @@
                     </h4>
                 </div>
                 <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <form method="post" action="ActualizarC">
+                        <%
+                           ArrayList<Usuario>  user= consulta.getUsuarios();
+                            
+                            for (int i = 0; i < user.size(); i++) {
+                                if(user.get(i).getIdUsuario()==id){
+                                    out.println("<p>"+"Nombre : "+"<input type=\"text\" name=\"nombre\" value=" +user.get(i).getNombre()+" </p>");
+                                    out.println("<p>"+"Apellido Paterno: "+"<input type=\"text\" name=\"appat\" value=" +user.get(i).getApPat()+" </p>");
+                                    out.println("<p>"+"Apellido Materno: "+"<input type=\"text\" name=\"ammat\" value=" +user.get(i).getApMat()+" </p>");
+                                    out.println("<p>"+"Fecha de nacimiento: "+"<input type=\"text\" name=\"fechanac\" value=" +user.get(i).getFechaNac()+" </p>");
+                                    out.println("<p>"+"Genero:  "+"<input type=\"text\" name=\"genero\" value=" +user.get(i).getGenero()+" </p>");
+                                    out.println("<p>"+"Correo: "+"<input type=\"text\" name=\"email\" value=" +user.get(i).getEmail()+" </p>");
+                                    
+                                    
+                                }
+                                
+                            }
+                           %>
+                           <br>
+                           <b><input type="submit" value= "Actualizar"/></b><br/><br/>
+                           <br/>
+                    </form>  
                 </div>
             </div>
 
@@ -219,7 +241,25 @@
                     </h4>
                 </div>
                 <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <form method="post" action="ConsultarCuentaC">
+                        <%
+                           ArrayList<Usuario>  usuarios= consulta.getUsuarios();
+                            
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                if(usuarios.get(i).getIdUsuario()==id){
+                                    out.println("Nombre : "+usuarios.get(i).getNombre()+"<br>");
+                                    out.println("Apellido Paterno: "+usuarios.get(i).getApPat()+"<br>");
+                                    out.println("Apellido Materno: "+usuarios.get(i).getApMat()+"<br>");
+                                    out.println("Fecha de nacimiento: "+usuarios.get(i).getFechaNac()+"<br>");
+                                    out.println("Genero:  "+usuarios.get(i).getGenero()+"<br>");
+                                    out.println("Correo: "+usuarios.get(i).getEmail()+"<br>");
+                                    
+                                }
+                                
+                            }
+                           %>
+                    </form>    
+                    
                 </div>
             </div>
 

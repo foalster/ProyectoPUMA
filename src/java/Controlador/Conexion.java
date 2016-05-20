@@ -23,9 +23,9 @@ public class Conexion {
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private String url = "jdbc:postgresql://localhost:5432/ProyectoPUMA";
-    private String user ="IS1";
-    private String pass = "hola123";
+    private String url = "jdbc:postgresql://localhost:5433/PUMA";
+    private String user ="postgres";
+    private String pass = "posgre";
     private String drive = "org.postgresql.Driver";
     private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -331,7 +331,7 @@ public class Conexion {
     public boolean editUsuario(int idUsuario, String usuario, String password, String nombre, String appat, String apmat, String fechanac, String genero, String email) {
         boolean b = false;
         try {
-            String sql = "Update Usuario SET Values( usuario = '"+usuario+"', password = '"+password+"', nombre = '"+nombre+"', appat = '"+appat+"', apmat = '"+apmat+"', fechanac = '"+fechanac+"', genero = '"+genero+"', email = '"+email+"') where idUsuario ="+idUsuario;
+            String sql = "Update Usuario SET usuario = '"+usuario+"', password = '"+password+"', nombre = '"+nombre+"', appat = '"+appat+"', apmat = '"+apmat+"', fechanac = '"+fechanac+"', genero = '"+genero+"', email = '"+email+"' where idUsuario ="+idUsuario;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             b = true;
