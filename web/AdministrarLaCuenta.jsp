@@ -39,6 +39,13 @@
                 });
             });
         </script>
+        <script  type="text/javascript">
+            $(function () {
+                $('input:button').click(function (){
+                    $('#count2').val($(this).data('quantity'));
+                });
+            });
+        </script>
         <script type="text/javascript">
             function init() {
                 calendar.set("date");
@@ -196,7 +203,45 @@
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <form method="post" action="ActualizarCalculadoraC">
+                        Id <input type="text" name="calculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>
+                        <input type="submit" style="color: #333;" value="Actualizar"/>
+                    </form>
+                    <table border="1">
+                        <tr>
+                            <td>Id</td>
+                            <td>Marca</td>
+                            <td>Modelo</td>
+                            <td>Disponible</td>
+                            <td>Eliminar</td>
+                        </tr>
+                        <%
+
+                            for (int i = 0; i < lista.size(); i++) {
+                                if (lista.get(i).getDisponible()) {
+                                nombre = lista.get(i).getIdCalculadora();
+                                lista.get(i).getIdCalculadora();
+                                out.println("<tr>");
+                                out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
+                                out.println("<td>" + lista.get(i).getMarca() + "</td>");
+                                out.println("<td>" + lista.get(i).getModelo() + "</td>");
+                                out.println("<td>" + lista.get(i).getDisponible() + "</td>");
+                                if (lista.get(i).getDisponible()) {
+                                    out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
+                                            + "</form>"
+                                            + "</td>");
+                                    nombre = 0;
+                                    out.println("</tr>");
+                                }else{
+                                    out.println("<td>" + "<label> No disponible </label>"
+                                            + "</td>");
+                                    nombre = 0;
+                                    out.println("</tr>");
+                                }
+                            }
+                            }
+                        %>            
+                    </table>        
                 </div>
             </div>
 

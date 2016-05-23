@@ -288,12 +288,12 @@ public class Conexion {
     public boolean editCalculadora(int id, String marca, String modelo) {
         boolean b = false;
         try {
-            String sql = "Update calculadora SET Values( "+marca+", "+modelo+", true) where id ="+id;
+            String sql = "Update calculadora SET marca = '"+marca+"', modelo = '"+modelo+"' where idcalculadora ="+id;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             b = true;
         } catch (Exception ex) {
-            System.out.println("Error al recuperar los datos de la entidad empleado "
+            System.out.println("Error al recuperar los datos de la entidad calculadora "
                     + ex.getMessage());
         }
         return b;
