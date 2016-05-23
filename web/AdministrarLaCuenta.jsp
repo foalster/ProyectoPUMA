@@ -32,7 +32,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/calendar.css"/>
         <script type="text/javascript" src="js/calendar.js"></script>
-        <script  type="text/javascript">$(function () {
+        <script  type="text/javascript">
+            $(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
                 });
