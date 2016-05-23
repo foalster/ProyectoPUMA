@@ -30,15 +30,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="css/calendar.css"/>
+        <script type="text/javascript" src="js/calendar.js"></script>
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
                 });
             });
-        </script>       
+        </script>
+        <script type="text/javascript">
+            function init() {
+                calendar.set("date");
+            }
+        </script>
         <title>PUMA</title>
     </head>
-    <body style = "background-color: #666; color: #fff">
+    <body onload="init()" style = "background-color: #666; font-weight: bold"color: #fff">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
@@ -209,11 +216,8 @@
                             
                             for (int i = 0; i < user.size(); i++) {
                                 if(user.get(i).getIdUsuario()==id){
-                                    out.println("<p>"+"Nombre : "+"<input type=\"text\" name=\"nombre\" value=" +user.get(i).getNombre()+" </p>");
-                                    out.println("<p>"+"Apellido Paterno: "+"<input type=\"text\" name=\"appat\" value=" +user.get(i).getApPat()+" </p>");
-                                    out.println("<p>"+"Apellido Materno: "+"<input type=\"text\" name=\"ammat\" value=" +user.get(i).getApMat()+" </p>");
-                                    out.println("<p>"+"Fecha de nacimiento: "+"<input type=\"text\" name=\"fechanac\" value=" +user.get(i).getFechaNac()+" </p>");
-                                    out.println("<p>"+"Genero:  "+"<input type=\"text\" name=\"genero\" value=" +user.get(i).getGenero()+" </p>");
+                                    out.println("<p>"+"Fecha de nacimiento: "+"<input type=\"text\" name=\"fechanac\" id=\"date\" readonly value=" +user.get(i).getFechaNac()+" </p>");
+                                    out.println("<p>"+"Password: "+"<input type=\"password\" name=\"password\" value=" +user.get(i).getPassword()+" </p>");
                                     out.println("<p>"+"Correo: "+"<input type=\"text\" name=\"email\" value=" +user.get(i).getEmail()+" </p>");
                                     
                                     
