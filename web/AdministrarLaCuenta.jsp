@@ -205,7 +205,7 @@
                 <div class="panel-heading" role="tab" id="headingFive">
                     <h4 class="panel-title">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Actualizar Cuenta
+                            Actualizar
                         </a>
                     </h4>
                 </div>
