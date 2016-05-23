@@ -34,7 +34,7 @@
         <script type="text/javascript" src="js/calendar.js"></script>
         <script  type="text/javascript">
             $(function () {
-                $('input:button').click(function(){
+                $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
                 });
             });
