@@ -70,7 +70,7 @@
                     </div>
                     Tiempo de prestamo: <input type="text" style="color: #333;" name="tiempo"/><br/><br/>
                     Lugar de entrega: <input type="text" style="color: #333;" name="lugar"/><br/><br/>
-                    Motivo: <br/><textarea name="comentarios" style="color: #333;" rows="10" cols="40"></textarea><br/><br/><br/>
+                    Motivo: <br/><textarea name="motivo" style="color: #333;" rows="10" cols="40"></textarea><br/><br/><br/>
                     <input type="submit" style="color: #333;" value="Solicitar"/>
                 </form>
             </div>

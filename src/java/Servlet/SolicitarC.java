@@ -5,8 +5,8 @@
  */
 package Servlet;
 
-
 import Controlador.Conexion;
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -15,13 +15,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 
 /**
  *
  * @author Foalster
  */
 public class SolicitarC extends HttpServlet {
+
     Conexion co = new Conexion();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,29 +42,58 @@ public class SolicitarC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         //String tpm = Inicio.idSeleccionada;
-        Integer variable = (Integer)request.getAttribute("seleccionada");
-        
+        Integer variable = (Integer) request.getAttribute("seleccionada");
+
         int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));
         String tiempo = request.getParameter("tiempo");
         String lugar = request.getParameter("lugar");
         String motivo = request.getParameter("motivo");
-        
-        
-        if(tiempo.length() != 0 && lugar.length() != 0 && motivo.length() != 0 && idCalculadora != 0){            
-            System.out.println(" aaaa" + variable );
+
+        System.out.println("aqui");
+        if (tiempo.length() != 0 && lugar.length() != 0 && motivo.length() != 0 && idCalculadora != 0) {
+            System.out.println(" aaaa");
+            String para = "hola.tu.mauricio@gmail.com";
+            String de = "mau_ricio1993@hotmail.com";
+            String host = "localhost";
+            Properties propiedades = System.getProperties();
+            propiedades.setProperty("mail.smtp.host", host);
+            Session sesion = Session.getDefaultInstance(propiedades);
+
+            try {
+                // Creamos un objeto mensaje tipo MimeMessage por defecto.
+                MimeMessage mensaje = new MimeMessage(sesion);
+
+                // Asignamos el “de o from” al header del correo.
+                mensaje.setFrom(new InternetAddress(de));
+
+                // Asignamos el “para o to” al header del correo.
+                mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
+
+                // Asignamos el asunto
+                mensaje.setSubject("Primer correo sencillo");
+
+                // Asignamos el mensaje como tal
+                mensaje.setText("El mensaje de nuestro primer correo");
+
+                // Enviamos el correo
+                Transport.send(mensaje);
+                System.out.println("Mensaje enviado");
+            } catch (MessagingException e) {
+                System.out.println("error exepcion");
+                e.printStackTrace();
+            }
+
             response.sendRedirect("Inicio.jsp");
-        } else{
-            request.getRequestDispatcher("Solicitar.jsp").include(request, response);
+        } else {
+            request.getRequestDispatcher("SolicitarB.jsp").include(request, response);
         }
-        }
-        
-        //co.conectar();
-    
-    
-    public static void start(int id){
-         //Solicitar.jsp;
-         System.out.println(id + "5");
-     }
+    }
+
+    //co.conectar();
+    public static void start(int id) {
+        //Solicitar.jsp;
+        System.out.println(id + "5");
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
