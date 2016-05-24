@@ -34,14 +34,14 @@
         <script type="text/javascript" src="js/calendar.js"></script>
         <script  type="text/javascript">
             $(function () {
-                $('input:button').click(function (){
+                $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
                 });
             });
         </script>
         <script  type="text/javascript">
             $(function () {
-                $('input:button').click(function (){
+                $('input:button').click(function () {
                     $('#count2').val($(this).data('quantity'));
                 });
             });
@@ -54,13 +54,16 @@
         <title>PUMA</title>
     </head>
     <body onload="init()" style = "background-color: #666; font-weight: bold"color: #fff">
-        <%
-            HttpSession sessions = request.getSession(false);
-            String usuario = (String) sessions.getAttribute("usuario");
-            int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
+          <%
+              HttpSession sessions = request.getSession(false);
+              String usuario = (String) sessions.getAttribute("usuario");
+              int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
 
-        %>
-        <div class="menu">
+          %>
+
+
+
+          <div class="menu">
             <nav>
                 <ul>
                     <li><a href="InicioC">PUMA</a></li>
@@ -79,17 +82,19 @@
             </nav>
         </div>
 
+        <div class="container">
+            <h2>Dynamic Tabs</h2>
+            <ul class="nav nav-pills nav-justified" >
+                <li><a data-toggle="tab" href="#home">Home</a></li>
+                <li class="active"><a data-toggle="tab" href="#menu1">Información de Perfil</a></li>
+                <li><a data-toggle="tab" href="#menu2">Crear Calculadora</a></li>
+                <li><a data-toggle="tab" href="#menu3">Calculadoras Publicadas</a></li>
+                <li><a data-toggle="tab" href="#menu4">Actualizar Calculadoras</a></li>
+                <li><a data-toggle="tab" href="#menu5">Eliminar Calculadoras</a></li>
+            </ul>
 
-        <div id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Crear Calculadora
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade">
                     <form method="post" action="CrearObjeto">
                         <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
                         Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
@@ -101,6 +106,58 @@
                         </select><br/><br/>
                         <b><input type="submit" value="Crear"/></b><br/><br/>
                     </form>
+                </div>
+                <div id="menu1" class="tab-pane fade in active">
+                    <form method="post" action="ConsultarCuentaC">
+                        <%
+                            ArrayList<Usuario> usuarios = consulta.getUsuarios();
+
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                if (usuarios.get(i).getIdUsuario() == id) {
+                                    out.println("Nombre : " + usuarios.get(i).getNombre() + "<br>");
+                                    out.println("Apellido Paterno: " + usuarios.get(i).getApPat() + "<br>");
+                                    out.println("Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
+                                    out.println("Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
+                                    out.println("Genero:  " + usuarios.get(i).getGenero() + "<br>");
+                                    out.println("Correo: " + usuarios.get(i).getEmail() + "<br>");
+
+                                }
+                            }
+                        %>
+                    </form>  
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <form method="post" action="CrearObjeto">
+                        <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
+                        Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
+                        Tipo: <select name="tipo" required="">
+                            <option value=0>Seleccione...</option>
+                            <option value=1 >Básica</option>
+                            <option value=2>Científica</option>
+                            <option value=3>Graficadora</option>
+                        </select><br/><br/>
+                        <b><input type="submit" value="Crear"/></b><br/><br/>
+                    </form>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    <h3>Menu 3</h3>
+                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Crear Calculadora
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    
 
                 </div>
             </div>
@@ -144,7 +201,7 @@
                                             + "</td>");
                                     nombre = 0;
                                     out.println("</tr>");
-                                }else{
+                                } else {
                                     out.println("<td>" + "<label> No disponible </label>"
                                             + "</td>");
                                     nombre = 0;
@@ -186,7 +243,7 @@
                                 out.println("<td>" + lista.get(i).getModelo() + "</td>");
                                 out.println("<td>" + lista.get(i).getDisponible() + "</td>");
                                 out.println("</tr>");
-                                
+
                             }
                         %>            
                     </table>        
@@ -216,29 +273,28 @@
                             <td>Eliminar</td>
                         </tr>
                         <%
-
                             for (int i = 0; i < lista.size(); i++) {
                                 if (lista.get(i).getDisponible()) {
-                                nombre = lista.get(i).getIdCalculadora();
-                                lista.get(i).getIdCalculadora();
-                                out.println("<tr>");
-                                out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
-                                out.println("<td>" + lista.get(i).getMarca() + "</td>");
-                                out.println("<td>" + lista.get(i).getModelo() + "</td>");
-                                out.println("<td>" + lista.get(i).getDisponible() + "</td>");
-                                if (lista.get(i).getDisponible()) {
-                                    out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
-                                            + "</form>"
-                                            + "</td>");
-                                    nombre = 0;
-                                    out.println("</tr>");
-                                }else{
-                                    out.println("<td>" + "<label> No disponible </label>"
-                                            + "</td>");
-                                    nombre = 0;
-                                    out.println("</tr>");
+                                    nombre = lista.get(i).getIdCalculadora();
+                                    lista.get(i).getIdCalculadora();
+                                    out.println("<tr>");
+                                    out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
+                                    out.println("<td>" + lista.get(i).getMarca() + "</td>");
+                                    out.println("<td>" + lista.get(i).getModelo() + "</td>");
+                                    out.println("<td>" + lista.get(i).getDisponible() + "</td>");
+                                    if (lista.get(i).getDisponible()) {
+                                        out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
+                                                + "</form>"
+                                                + "</td>");
+                                        nombre = 0;
+                                        out.println("</tr>");
+                                    } else {
+                                        out.println("<td>" + "<label> No disponible </label>"
+                                                + "</td>");
+                                        nombre = 0;
+                                        out.println("</tr>");
+                                    }
                                 }
-                            }
                             }
                         %>            
                     </table>        
@@ -258,22 +314,21 @@
                 <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                     <form method="post" action="ActualizarC">
                         <%
-                           ArrayList<Usuario>  user= consulta.getUsuarios();
-                            
+                            ArrayList<Usuario> user = consulta.getUsuarios();
+
                             for (int i = 0; i < user.size(); i++) {
-                                if(user.get(i).getIdUsuario()==id){
-                                    out.println("<p>"+"Fecha de nacimiento: "+"<input type=\"text\" name=\"fechanac\" id=\"date\" readonly value=" +user.get(i).getFechaNac()+" </p>");
-                                    out.println("<p>"+"Password: "+"<input type=\"password\" name=\"password\" value=" +user.get(i).getPassword()+" </p>");
-                                    out.println("<p>"+"Correo: "+"<input type=\"text\" name=\"email\" value=" +user.get(i).getEmail()+" </p>");
-                                    
-                                    
+                                if (user.get(i).getIdUsuario() == id) {
+                                    out.println("<p>" + "Fecha de nacimiento: " + "<input type=\"text\" name=\"fechanac\" id=\"date\" readonly value=" + user.get(i).getFechaNac() + " </p>");
+                                    out.println("<p>" + "Password: " + "<input type=\"password\" name=\"password\" value=" + user.get(i).getPassword() + " </p>");
+                                    out.println("<p>" + "Correo: " + "<input type=\"text\" name=\"email\" value=" + user.get(i).getEmail() + " </p>");
+
                                 }
-                                
+
                             }
-                           %>
-                           <br>
-                           <b><input type="submit" value= "Actualizar"/></b><br/><br/>
-                           <br/>
+                        %>
+                        <br>
+                        <b><input type="submit" value= "Actualizar"/></b><br/><br/>
+                        <br/>
                     </form>  
                 </div>
             </div>
@@ -293,22 +348,20 @@
                 <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
                     <form method="post" action="ConsultarCuentaC">
                         <%
-                           ArrayList<Usuario>  usuarios= consulta.getUsuarios();
-                            
                             for (int i = 0; i < usuarios.size(); i++) {
-                                if(usuarios.get(i).getIdUsuario()==id){
-                                    out.println("Nombre : "+usuarios.get(i).getNombre()+"<br>");
-                                    out.println("Apellido Paterno: "+usuarios.get(i).getApPat()+"<br>");
-                                    out.println("Apellido Materno: "+usuarios.get(i).getApMat()+"<br>");
-                                    out.println("Fecha de nacimiento: "+usuarios.get(i).getFechaNac()+"<br>");
-                                    out.println("Genero:  "+usuarios.get(i).getGenero()+"<br>");
-                                    out.println("Correo: "+usuarios.get(i).getEmail()+"<br>");
-                                    
+                                if (usuarios.get(i).getIdUsuario() == id) {
+                                    out.println("Nombre : " + usuarios.get(i).getNombre() + "<br>");
+                                    out.println("Apellido Paterno: " + usuarios.get(i).getApPat() + "<br>");
+                                    out.println("Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
+                                    out.println("Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
+                                    out.println("Genero:  " + usuarios.get(i).getGenero() + "<br>");
+                                    out.println("Correo: " + usuarios.get(i).getEmail() + "<br>");
+
                                 }
                             }
-                           %>
-                    </form>    
-                    
+                        %>
+                    </form>  
+
                 </div>
             </div>
 
