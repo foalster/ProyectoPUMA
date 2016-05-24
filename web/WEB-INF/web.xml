@@ -37,8 +37,8 @@
         <servlet-class>Servlet.ActualizarCalculadoraC</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ActualizadorCalculadoraC</servlet-name>
-        <servlet-class>Servlet.ActualizadorCalculadoraC</servlet-class>
+        <servlet-name>Actualizador</servlet-name>
+        <servlet-class>Servlet.Actualizador</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesionC</servlet-name>
@@ -77,8 +77,8 @@
         <url-pattern>/ActualizarCalculadoraC</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ActualizadorCalculadoraC</servlet-name>
-        <url-pattern>/ActualizadorCalculadoraC</url-pattern>
+        <servlet-name>Actualizador</servlet-name>
+        <url-pattern>/Actualizador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

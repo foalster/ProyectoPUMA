@@ -35,6 +35,11 @@
                 calendar.set("date");
             }
         </script>
+        <style>
+            #actualizar{
+                text-align: center;                
+            }
+        </style>
         <title>PUMA</title>
     </head>
     <body onload="init()" style = "background-color: #666; font-weight: bold"color: #fff">
@@ -63,8 +68,9 @@
                 </ul>   
             </nav>
         </div>
-        <div>
-            <form method="post" action="ActualizadorCalculadoraC">
+        <div id="actualizar">
+            <h1>Formulario de Actualizar Calculadora</h1>
+            <form method="post" action="Actualizador">
                 <%
                     int nombre = 0;
                     int cal = Integer.parseInt(calculadora);
@@ -73,9 +79,9 @@
                     for (int i = 0; i < lista.size(); i++) {
                         if (lista.get(i).getIdCalculadora() == cal) {
                             nombre = lista.get(i).getIdCalculadora();
-                            out.println("<p>" + "Marca " + "<input type=\"text\" name=\"marca\" id=\"date\" readonly value=" + lista.get(i).getMarca() + " </p>");
-                            out.println("<p>" + "Modelo: " + "<input type=\"text\" name=\"modelo\" value=" + lista.get(i).getModelo() + " </p>");
-                            }
+                            out.println("<br/><br/> <p>" + "Marca: " + "<input type=\"text\" name=\"marca\" id=\"date\" readonly value=" + lista.get(i).getMarca() + " </p>");
+                            out.println("<p>" + "Modelo: " + "<input type=\"text\" name=\"modelo\" value=" + lista.get(i).getModelo() + " </p> <br/><br/> ");
+                        }
                     }
                 %>
                 <br>

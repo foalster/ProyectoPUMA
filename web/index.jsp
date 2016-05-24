@@ -22,6 +22,11 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            h1{
+                text-align: center;
+            }
+        </style>
     </head>
     <body style = "background-color: #666;">
         
@@ -40,11 +45,54 @@ and open the template in the editor.
         
         <div class="container" style="text-align: left">
             <h1>¡Bienvenido a PUMA!</h1>     
-        <!--
-        <form method="post" action="Usuarios.jsp">
-        <input type="submit" value="Consulta Usuarios"/>
-        </form>
-        -->
+        
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" >
+
+                    <div class="item active">
+                        <center><img src="img/basica.jpg" width="460" height="345"></center>
+                        <div class="carousel-caption">
+                            <h3>Básicas</h3>
+                            <p>Calculadoras básicas disponibles.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <center><img src="img/cientifica.jpg" width="460" height="345"></center>
+                        <div class="carousel-caption">
+                            <h3>Cientifica</h3>
+                            <p>Calculadoras cientificas disponibles.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <center><img src="img/graficadora.jpg" width="460" height="345"></center>
+                        <div class="carousel-caption">
+                            <h3>Gráficadora</h3>
+                            <p>Gráficadoras disponibles.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>  
     </body>
 </html>

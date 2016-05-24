@@ -116,9 +116,9 @@
                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <form method="post" action="EliminarC">
                         Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
-                        <input type="submit" style="color: #333;" value="Eliminar"/>
+                        <input type="submit" style="color: #333;" value="Eliminar"/><br/><br/>
                     </form>
-                    <table border="1">
+                    <table style="margin: auto;" border="1">
                         <tr>
                             <td>Id</td>
                             <td>Marca</td>
@@ -166,7 +166,7 @@
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <table border="1">
+                    <table style="margin: auto;" border="1">
                         <tr>
                             <td>Id</td>
                             <td>Marca</td>
@@ -205,9 +205,9 @@
                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                     <form method="post" action="ActualizarCalculadoraC">
                         Id <input type="text" name="calculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>
-                        <input type="submit" style="color: #333;" value="Actualizar"/>
+                        <input type="submit" style="color: #333;" value="Actualizar"/><br/><br/>
                     </form>
-                    <table border="1">
+                    <table style="margin: auto;" border="1">
                         <tr>
                             <td>Id</td>
                             <td>Marca</td>
@@ -305,7 +305,6 @@
                                     out.println("Correo: "+usuarios.get(i).getEmail()+"<br>");
                                     
                                 }
-                                
                             }
                            %>
                     </form>    

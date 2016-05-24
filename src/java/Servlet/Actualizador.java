@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author SONY_VAIO
  */
-public class ActualizadorCalculadoraC extends HttpServlet {
+public class Actualizador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

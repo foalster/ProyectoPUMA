@@ -27,14 +27,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <script  type="text/javascript">
-                            function reply(clicked_id){
-                                idSeleccionada = clicked_id;
-                                //alert(idSeleccionada);
-                                //Servlet.start(clicked_id);
-                    
-                }
-                            </script>
+        <script  type="text/javascript">
+            function reply(clicked_id) {
+                idSeleccionada = clicked_id;
+                //alert(idSeleccionada);
+                //Servlet.start(clicked_id);
+
+            }
+        </script>
+        <style>
+            h1{
+                text-align: center;
+            }
+        </style>
         <title>PUMA</title>
     </head>
     <body style = "background-color: #666">
@@ -46,7 +51,7 @@
             <nav>
                 <ul>
                     <li><a href="InicioC">PUMA</a></li>
-                    
+
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                             <%=usuario%>
@@ -61,58 +66,52 @@
             </nav>
         </div>
         <h1>Hola, <%=usuario%>!</h1>
-        
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
 
-        <table border="1">
-            <tr>
-                <td>Marca</td>
-                <td>Modelo</td>
-                <td>Id</td>
-                <td>Solicitar</td>
-            </tr>
-            <%
-                int nombre = 0;
-                LinkedList<Calculadora> lista = consulta.getCalculadoras();
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" >
 
-                consulta.conectar();
-                lista = consulta.getCalculadoras();
-                consulta.desconectar();
-                
-                for (int i = 0; i < lista.size(); i++) {
-                    nombre = lista.get(i).getIdCalculadora();
-                    lista.get(i).getIdCalculadora();
-                    out.println("<tr>");
-                    out.println("<td>" + lista.get(i).getMarca() + "</td>");
-                    out.println("<td>" + lista.get(i).getModelo() + "</td>");
-                    out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
-                    if (lista.get(i).getDisponible()) {
-                        out.println("<td>" + "<form action=\"Solicitar.jsp\"  method=\"post\">\n"
-                                + "<input type=\"submit\" value=\"Solicitar\"/ id=" + nombre + " onClick = \"reply(this.id)\"> \n"
-                                + "</form>"
-                                + "</td>");
-                        /**
-                         out.println("<td><form action=\"SolicitarC\" method=\"post\">\n"
-                                + "<input name =\"" + lista.get(i).getIdCalculadora() + "\"type=\"submit\" value=\"Solicitar\"/>\n"
-                                + "</form></td>");
-                                */
+                    <div class="item active">
+                        <center><a href="SolicitarB.jsp"><img src="img/basica.jpg" width="460" height="345"></a></center>
+                        <div class="carousel-caption">
+                            <h3>Básicas</h3>
+                            <p>Calculadoras básicas disponibles.</p>
+                        </div>
+                    </div>
 
-                    nombre = 0;
-                    out.println("</tr>");
-                }
-                //System.out.println("A");
-                //SolicitarC.start(boton);
-                }
-            %>
-                                
-                                
-                   
-            
-            
-            
-        </table>
-            <%request.setAttribute("seleccionada", new Integer(idSeleccionada));%>
-            
-    <form action="">
+                    <div class="item">
+                        <center><a href="SolicitarC.jsp"><img src="img/cientifica.jpg" width="460" height="345"></a></center>
+                        <div class="carousel-caption">
+                            <h3>Cientifica</h3>
+                            <p>Calculadoras cientificas disponibles.</p>
+                        </div>
+                    </div>
 
+                    <div class="item">
+                        <center><a href="SolicitarG.jsp"><img src="img/graficadora.jpg" width="460" height="345"></a></center>
+                        <div class="carousel-caption">
+                            <h3>Gráficadora</h3>
+                            <p>Gráficadoras disponibles.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
     </body>
 </html>

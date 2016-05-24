@@ -62,7 +62,7 @@
                 </ul>   
             </nav>
         </div>     
-            <h1 class="form-signin-heading">Solicita</h1>
+            <h1 class="form-signin-heading">Solicitud de Calculadoras Básicas.</h1>
             <div class="container-left">
                 <form id="formulario" method="post" action="SolicitarC">                 
                     <div id="caja">
@@ -77,7 +77,7 @@
 
 
             <div id="container-rigth">
-            <table border="1">
+                <table style="margin:auto;" border="1">
                 <tr>
                     <td>Marca</td>
                     <td>Modelo</td>
