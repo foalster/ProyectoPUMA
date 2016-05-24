@@ -35,11 +35,6 @@
 
             }
         </script>
-        <style>
-            h1{
-                text-align: center;
-            }
-        </style>
         <title>PUMA</title>
     </head>
     <body style = "background-color: #666">
@@ -65,8 +60,11 @@
                 </ul>   
             </nav>
         </div>
-        <h1>Hola, <%=usuario%>!</h1>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="container" style="text-align: left">
+            <br>
+            <h1>Hola, <%=usuario%>!</h1>
+            <br>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -113,5 +111,6 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        </div>
     </body>
 </html>

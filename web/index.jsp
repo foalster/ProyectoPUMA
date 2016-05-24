@@ -22,11 +22,7 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            h1{
-                text-align: center;
-            }
-        </style>
+        
     </head>
     <body style = "background-color: #666;">
         
