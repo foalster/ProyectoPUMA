@@ -53,7 +53,7 @@
         </script>
         <title>PUMA</title>
     </head>
-    <body onload="init()" style = "background-color: #666; font-weight: bold"color: #fff">
+    <body onload="init()" style = "font-weight: bold;">
           <%
               HttpSession sessions = request.getSession(false);
               String usuario = (String) sessions.getAttribute("usuario");
@@ -83,31 +83,18 @@
         </div>
 
         <div class="container">
-            <h2>Dynamic Tabs</h2>
+            <h2>¡Administra tu perfil!</h2><br/>
             <ul class="nav nav-pills nav-justified" >
-                <li><a data-toggle="tab" href="#home">Home</a></li>
-                <li class="active"><a data-toggle="tab" href="#menu1">Información de Perfil</a></li>
-                <li><a data-toggle="tab" href="#menu2">Crear Calculadora</a></li>
-                <li><a data-toggle="tab" href="#menu3">Calculadoras Publicadas</a></li>
-                <li><a data-toggle="tab" href="#menu4">Actualizar Calculadoras</a></li>
-                <li><a data-toggle="tab" href="#menu5">Eliminar Calculadoras</a></li>
+                
+                <li class="active"><a data-toggle="pill" href="#menu1">Información de Perfil</a></li>
+                <li><a data-toggle="pill" href="#menu2">Crear Calculadora</a></li>
+                <li><a data-toggle="pill" href="#menu3">Calculadoras Publicadas</a></li>
+                <li><a data-toggle="pill" href="#menu4">Actualizar Calculadoras</a></li>
+                <li><a data-toggle="pill" href="#menu5">Eliminar Calculadoras</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="home" class="tab-pane fade">
-                    <form method="post" action="CrearObjeto">
-                        <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
-                        Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
-                        Tipo: <select name="tipo" required="">
-                            <option value=0>Seleccione...</option>
-                            <option value=1 >Básica</option>
-                            <option value=2>Científica</option>
-                            <option value=3>Graficadora</option>
-                        </select><br/><br/>
-                        <b><input type="submit" value="Crear"/></b><br/><br/>
-                    </form>
-                </div>
-                <div id="menu1" class="tab-pane fade in active">
+                <div id="menu1" class="tab-pane fade in active"><br/><br/>
                     <form method="post" action="ConsultarCuentaC">
                         <%
                             ArrayList<Usuario> usuarios = consulta.getUsuarios();

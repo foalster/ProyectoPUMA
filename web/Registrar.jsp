@@ -27,7 +27,7 @@
         </script>
     </head>
     
-    <body onload="init()" style = "background-color: #666; font-weight: bold">
+    <body onload="init()" style = "text-align: center; font-weight: bold">
         
         <div class="menu">
             <nav>

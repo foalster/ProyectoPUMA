@@ -24,7 +24,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>
-    <body style = "background-color: #666;">
+    <body style="background:url('calculator.jpg'); background-size: cover; background-repeat: no-repeat; color: #fff">
         
         
         <div class="menu">
@@ -40,9 +40,9 @@ and open the template in the editor.
         
         
         <div class="container" style="text-align: left">
-            <h1>¡Bienvenido a PUMA!</h1>     
+            <h1>¡Bienvenido a PUMA!</h1><br/>
         
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="background-color: rgba(0, 0, 0, 0.7);">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
