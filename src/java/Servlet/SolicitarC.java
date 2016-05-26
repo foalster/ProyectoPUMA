@@ -68,13 +68,12 @@ public class SolicitarC extends HttpServlet {
                 if (lista.get(i).getIdCalculadora() == idC) {
                     idP = lista.get(i).getIdPrestamista();
                     modelo = lista.get(i).getModelo();
-                    
+
                     for (int j = 0; j < usuarios.size(); j++) {
-                        System.out.println("id Pres"+ usuarios.get(j).getIdUsuario());
+                        System.out.println("id Pres" + usuarios.get(j).getIdUsuario());
                         if (usuarios.get(j).getIdUsuario() == idP) {
-                            email = usuarios.get(idP-1).getEmail();
-                            
-                    
+                            email = usuarios.get(idP - 1).getEmail();
+
                             break a;
                         }
                     }
@@ -83,12 +82,12 @@ public class SolicitarC extends HttpServlet {
 
             System.out.println("email: " + email);
             Email nuevo = new Email();
-            nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha solicitado el objeto "+modelo+" \n con motivo "+ motivo+ " a entregarse en "+lugar+ " por "+tiempo, "Solicitud Pendiente PUMA");
+            nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha solicitado el objeto " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Pendiente PUMA");
             response.sendRedirect("Inicio.jsp");
-        }else{
+        } else {
             response.sendRedirect("Inicio.jsp");
         }
-        
+
     }
 
     //co.conectar();
