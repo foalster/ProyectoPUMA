@@ -29,7 +29,7 @@
                 });
             });
         </script>
-        
+
         <style>
             #formulario{
                 color:#fff;
@@ -39,7 +39,7 @@
         <title>Formulario</title>
     </head>
 
-    <body style = "background-color: #666">
+    <body style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat;">
         <!--<p>Me ha llegado <%= request.getAttribute("idSeleccionada")%></p>-->
         <%
             HttpSession sessions = request.getSession(false);
@@ -61,53 +61,53 @@
 
                 </ul>   
             </nav>
-        </div>     
-            <h1 class="form-signin-heading">Solicitud de Gráficadoras.</h1>
-            <div class="container-left">
-                <form id="formulario" method="post" action="SolicitarC">                 
+        </div>
+        <div class="container" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 100px; color: #fff; margin-top: 3%;">
+            <br/><h1 class="form-signin-heading">Solicitud de Calculadoras Gráficadoras</h1><br/><br/>
+            <div style="margin-left: 10%; position: relative; float: left;">
+                <form id="formulario" method="post" action="SolicitarC" >                 
                     <div id="caja">
                         Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0"><br/><br/>
                     </div>
-                    Tiempo de prestamo: <input type="text" style="color: #333;" name="tiempo"/><br/><br/>
-                    Lugar de entrega: <input type="text" style="color: #333;" name="lugar"/><br/><br/>
+                    Tiempo de prestamo: <input type="text"  name="tiempo"/><br/><br/>
+                    Lugar de entrega: <input type="text"  name="lugar"/><br/><br/>
                     Motivo: <br/><textarea name="motivo" style="color: #333;" rows="10" cols="40"></textarea><br/><br/><br/>
-                    <input type="submit" style="color: #333;" value="Solicitar"/>
+                    <input type="submit" value="Solicitar"/><br/><br/><br/><br/>
                 </form>
             </div>
+            <div id="container-rigth" style="position: relative; float: right; margin-right: 15%">
+                <table class="table" style="margin:auto; background-color: #000; border-color: #444" border="1">
+                    <tr>
+                        <td>Marca</td>
+                        <td>Modelo</td>
+                        <td>Id</td>
+                        <td>Solicitar</td>
+                    </tr>
+                    <%
+                        int nombre = 0;
+                        LinkedList<Calculadora> lista = consulta.getCalculadoras();
+                        consulta.conectar();
+                        consulta.desconectar();
 
-
-            <div id="container-rigth">
-                <table style="margin:auto;" border="1">
-                <tr>
-                    <td>Marca</td>
-                    <td>Modelo</td>
-                    <td>Id</td>
-                    <td>Solicitar</td>
-                </tr>
-                <%
-                    int nombre = 0;
-                    LinkedList<Calculadora> lista = consulta.getCalculadoras();
-                    consulta.conectar();
-                    consulta.desconectar();
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo()== 3) ) {
-                            nombre = lista.get(i).getIdCalculadora();
-                            lista.get(i).getIdCalculadora();
-                            out.println("<tr>");
-                            out.println("<td>" + lista.get(i).getMarca() + "</td>");
-                            out.println("<td>" + lista.get(i).getModelo() + "</td>");
-                            out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
-                            out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
-                                    + "</form>"
-                                    + "</td>");
-                            nombre = 0;
-                            out.println("</tr>");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 3)) {
+                                nombre = lista.get(i).getIdCalculadora();
+                                lista.get(i).getIdCalculadora();
+                                out.println("<tr>");
+                                out.println("<td>" + lista.get(i).getMarca() + "</td>");
+                                out.println("<td>" + lista.get(i).getModelo() + "</td>");
+                                out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
+                                out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" style=\" color: #000;\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
+                                        + "</form>"
+                                        + "</td>");
+                                nombre = 0;
+                                out.println("</tr>");
+                            }
                         }
-                    }
 
-                %>
-            </table>
+                    %>
+                </table>
             </div>
+        </div>
     </body>
 </html>

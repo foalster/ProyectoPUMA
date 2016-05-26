@@ -45,7 +45,7 @@
         </script>
         <title>PUMA</title>
     </head>
-    <body onload="init()" style = "font-weight: bold;">
+    <body onload="init()" style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat; font-weight: bold;">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
@@ -74,15 +74,15 @@
             </nav>
         </div>
 
-        <div class="container">
-            <h2>¡Administra tu perfil!</h2><br/>
-            <ul class="nav nav-tabs nav-justified" >
+        <div class="container" style="height: 650px; background-color: rgba(0, 0, 0, 0.7); border-radius: 50px; color: #fff; margin-top: 3%;">
+            <h2 style="text-align: center;">¡Administra tu perfil!</h2><br/>
+            <ul class="nav nav-pills nav-justified">
 
-                <li class="active"><a data-toggle="tab" href="#menu1">Información de Perfil</a></li>
-                <li><a data-toggle="tab" href="#menu2">Crear Calculadora</a></li>
-                <li><a data-toggle="tab" href="#menu3">Calculadoras Publicadas</a></li>
-                <li><a data-toggle="tab" href="#menu4">Actualizar Calculadoras</a></li>
-                <li><a data-toggle="tab" href="#menu4">Eliminar Calculadoras</a></li>
+                <li class="active"><a data-toggle="pill" href="#menu1">Información de Perfil</a></li>
+                <li><a data-toggle="pill" href="#menu2">Crear Calculadora</a></li>
+                <li><a data-toggle="pill" href="#menu3">Calculadoras Publicadas</a></li>
+                <li><a data-toggle="pill" href="#menu4">Actualizar Calculadoras</a></li>
+                <li><a data-toggle="pill" href="#menu4">Eliminar Calculadoras</a></li>
             </ul>
 
             <div class="tab-content">
