@@ -3978,6 +3978,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  background-color: rgba(0 , 0, 0, 0.3);
 }
 .nav > li {
   position: relative;
