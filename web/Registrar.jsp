@@ -27,7 +27,7 @@
         </script>
     </head>
     
-    <body onload="init()" style = "text-align: center; font-weight: bold">
+    <body onload="init()" style="background:url('img/SignUp_Backg.jpg'); background-size: cover; background-repeat: no-repeat; color: #fff; font-weight: bold" >
         
         <div class="menu">
             <nav>
@@ -39,14 +39,14 @@
             </nav>
         </div>
         
-        <div class = "container">
+        <div class = "container" style="background-color: rgba(0, 0, 0, 0.7); margin-top:2%; border-radius:100px; input{color: #000}">
             <div class="wrapper">
-                <form method="post" action="RegistrarC">
-                    <h1 class="form-signin-heading">Regístrate</h1><br/>
+                <h1 class="form-signin-heading">Regístrate</h1><br/>
+                <form method="post" action="RegistrarC" style="margin-left: 10%">
                     Usuario: <input type="text" name="usuario"/><br/><br/>
                     Contraseña: <input type="password" name="password"/><br/>
                     Nombre(s): <input type="text" name="nombre"/><br/><br/>
-                    Apellido Paterno: <input type="text" name="appat"/><br/><br/>
+                    Apellido Paterno: <input type="text" name="appat" /><br/><br/>
                     Apellido Materno: <input type="text" name="apmat"/><br/><br/>
                     Fecha de Nacimiento: <input type="text" name="fechanac" id="date" readonly><br/><br/>
                     Genero: <select name="genero" required="">
@@ -54,9 +54,9 @@
                         <option value="H">Hombre</option>
                         <option value="M">Mujer</option>
                     </select><br/><br/>
-                    Email: <input type="text" name="email"/><br/><br/>
+                    Email: <input type="text" name="email"/><br/><br/><br/><br/>
                     <input type="submit" value="Registrar"/>
-                </form>
+                </form><br/><br/>
             </div>
         </div>
     </body>

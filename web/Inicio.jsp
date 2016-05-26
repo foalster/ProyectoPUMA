@@ -37,10 +37,13 @@
         </script>
         <title>PUMA</title>
     </head>
-    <body>
+    <body style="background:url('img/calculator.jpg'); background-size: cover; background-repeat: no-repeat; color:#fff">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
+            if (usuario == null) {
+                response.sendRedirect("index.jsp");
+            }
         %>
         <div class="menu">
             <nav>
@@ -64,7 +67,7 @@
             <br>
             <h1>Hola, <%=usuario%>!</h1>
             <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="background-color: rgba(0, 0, 0, 0.7);">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>

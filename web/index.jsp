@@ -24,7 +24,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>
-    <body style="background:url('calculator.jpg'); background-size: cover; background-repeat: no-repeat; color: #fff">
+    <body style="background:url('img/calculator.jpg'); background-size: cover; background-repeat: no-repeat; color: #fff">
         
         
         <div class="menu">
@@ -62,7 +62,7 @@ and open the template in the editor.
                     </div>
 
                     <div class="item">
-                        <center><img src="img/cientifica.jpg" width="460" height="345"></center>
+                        <center><img src="img/cientifica.png" height="345"></center>
                         <div class="carousel-caption">
                             <h3>Cientifica</h3>
                             <p>Calculadoras cientificas disponibles.</p>

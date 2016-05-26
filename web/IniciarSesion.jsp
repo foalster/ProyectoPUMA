@@ -16,7 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style = "background-color: #fff">
+    <body style="background:url('img/236.jpg'); background-size: cover; background-repeat: no-repeat;">
         <div class="menu">
             <nav>
                 <ul>

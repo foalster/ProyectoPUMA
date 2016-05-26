@@ -53,11 +53,10 @@ public class IniciarSesionC extends HttpServlet {
         }
         
         if(co.iniciarSesion(usuario,password)){
-            HttpSession session=request.getSession();
+            HttpSession session=request.getSession(false);
             session.setAttribute("usuario",usuario); 
             session.setAttribute("id",id);
-            request.getRequestDispatcher("Inicio.jsp").include(request, response);  
-            //response.sendRedirect("Inicio.jsp");
+            response.sendRedirect("Inicio.jsp");
         } else {
             out.println("<!DOCTYPE html>");
             out.println("<html>");

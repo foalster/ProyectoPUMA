@@ -14,11 +14,13 @@ and open the template in the editor.
 }
 
 .form-signin {
+  color: #fff;
   max-width: 420px;
   padding: 30px 38px 66px;
   margin: 0 auto;
-  background-color: #eee;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 50px;
+  margin-top: 13%;
   }
 
 .form-signin-heading {
