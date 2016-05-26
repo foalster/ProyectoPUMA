@@ -52,7 +52,7 @@ public class EliminarC extends HttpServlet {
                     out.println("</head>");
                     out.println("<body>");
                     out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
-                                "<strong>Bien hecho!</strong> Has publicado con exito una calculadora.\n" +
+                                "<strong>Bien hecho!</strong> Has eliminado con exito una calculadora.\n" +
                                 "</div>");
                     out.println("</body>");
                     out.println("</html>");

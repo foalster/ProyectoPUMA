@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Controlador.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,10 +34,15 @@ public class ActualizarCalculadoraC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();    
         
-        String calculadora = request.getParameter("calculadora");
-        HttpSession session=request.getSession();
-        session.setAttribute("calculadora",calculadora); 
-        request.getRequestDispatcher("Actualizar.jsp").include(request, response);
+        int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));       
+        String marca = request.getParameter("marca");
+        String modelo = request.getParameter("modelo");        
+        System.out.println(idCalculadora);
+        System.out.println(marca);
+        System.out.println(modelo);
+        Conexion co = new Conexion();
+        co.editCalculadora(idCalculadora, marca, modelo);
+        request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
         
         
     }

@@ -37,8 +37,7 @@ public class Actualizador extends HttpServlet {
         HttpSession session = request.getSession();
       
         String calculadora = (String) session.getAttribute("idCalculadora");
-        int id = Integer.parseInt(calculadora);
-        
+        int id = Integer.parseInt(calculadora);        
         String marca = request.getParameter("marca");
         String modelo = request.getParameter("modelo");        
         

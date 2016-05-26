@@ -23,7 +23,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/calendar.css"/>
         <script type="text/javascript" src="js/calendar.js"></script>
-        <script  type="text/javascript">
+        <style>
+            #boton{
+	padding: 10px;
+	background: orange;
+	width: 95px;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0px 0px 1px #000;
+	display: inline-block;
+}
+
+#boton:hover{
+	opacity: .8;
+}
+
+#caja{
+	width: 100%;
+	margin: auto;
+	height: 0px;
+	background: #000;
+	box-shadow: 10px 10px 3px #D8D8D8;
+	transition: height .4s;
+}
+        </style>
+        <script>var clic = 1;
+function divLogin(){ 
+   if(clic==1){
+   document.getElementById("caja").style.height = "100px";
+   clic = clic + 1;
+   } else{
+       document.getElementById("caja").style.height = "0px";      
+    clic = 1;
+   }   
+}
+        </script>
+        <script  type="text/javascript">            
             $(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
@@ -70,24 +106,11 @@
         </div>
         <div id="actualizar">
             <h1>Formulario de Actualizar Calculadora</h1>
-            <form method="post" action="Actualizador">
-                <%
-                    int nombre = 0;
-                    int cal = Integer.parseInt(calculadora);
-                    LinkedList<Calculadora> lista = consulta.getCalculadoras(id);
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        if (lista.get(i).getIdCalculadora() == cal) {
-                            nombre = lista.get(i).getIdCalculadora();
-                            out.println("<br/><br/> <p>" + "Marca: " + "<input type=\"text\" name=\"marca\" id=\"date\" readonly value=" + lista.get(i).getMarca() + " </p>");
-                            out.println("<p>" + "Modelo: " + "<input type=\"text\" name=\"modelo\" value=" + lista.get(i).getModelo() + " </p> <br/><br/> ");
-                        }
-                    }
-                %>
-                <br>
-                <b><input type="submit" value= "Actualizar"/></b><br/><br/>
-                <br/>
-            </form>  
+            <div id="boton" onclick="divLogin()">
+Mostrar/Ocultar
+</div>
+<div id="caja">
+</div>
         </div>
     </body>
 </html>
