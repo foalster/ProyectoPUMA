@@ -6,6 +6,10 @@
 package Servlet;
 
 import Controlador.Conexion;
+import Controlador.Control;
+import Modelo.Calculadora;
+import Modelo.Email;
+import Modelo.Usuario;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
 
 /**
  *
@@ -45,48 +48,47 @@ public class SolicitarC extends HttpServlet {
         Integer variable = (Integer) request.getAttribute("seleccionada");
 
         int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));
+        Control consulta = new Control();
         String tiempo = request.getParameter("tiempo");
         String lugar = request.getParameter("lugar");
         String motivo = request.getParameter("motivo");
+        String id = request.getParameter("idCalculadora");
+        String modelo = "";
 
         System.out.println("aqui");
         if (tiempo.length() != 0 && lugar.length() != 0 && motivo.length() != 0 && idCalculadora != 0) {
-            System.out.println(" aaaa");
-            String para = "hola.tu.mauricio@gmail.com";
-            String de = "mau_ricio1993@hotmail.com";
-            String host = "localhost";
-            Properties propiedades = System.getProperties();
-            propiedades.setProperty("mail.smtp.host", host);
-            Session sesion = Session.getDefaultInstance(propiedades);
-
-            try {
-                // Creamos un objeto mensaje tipo MimeMessage por defecto.
-                MimeMessage mensaje = new MimeMessage(sesion);
-
-                // Asignamos el “de o from” al header del correo.
-                mensaje.setFrom(new InternetAddress(de));
-
-                // Asignamos el “para o to” al header del correo.
-                mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
-
-                // Asignamos el asunto
-                mensaje.setSubject("Primer correo sencillo");
-
-                // Asignamos el mensaje como tal
-                mensaje.setText("El mensaje de nuestro primer correo");
-
-                // Enviamos el correo
-                Transport.send(mensaje);
-                System.out.println("Mensaje enviado");
-            } catch (MessagingException e) {
-                System.out.println("error exepcion");
-                e.printStackTrace();
+            //String email = co.correo();
+            int idC = Integer.parseInt(id);
+            int idP;
+            String email = "";
+            LinkedList<Calculadora> lista = consulta.getCalculadoras();
+            ArrayList<Usuario> usuarios = consulta.getUsuarios();
+            a:
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getIdCalculadora() == idC) {
+                    idP = lista.get(i).getIdPrestamista();
+                    modelo = lista.get(i).getModelo();
+                    
+                    for (int j = 0; j < usuarios.size(); j++) {
+                        System.out.println("id Pres"+ usuarios.get(j).getIdUsuario());
+                        if (usuarios.get(j).getIdUsuario() == idP) {
+                            email = usuarios.get(idP-1).getEmail();
+                            
+                    
+                            break a;
+                        }
+                    }
+                }
             }
 
+            System.out.println("email: " + email);
+            Email nuevo = new Email();
+            nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha solicitado el objeto "+modelo+" \n con motivo "+ motivo+ " a entregarse en "+lugar+ " por "+tiempo, "Solicitud Pendiente PUMA");
             response.sendRedirect("Inicio.jsp");
-        } else {
-            request.getRequestDispatcher("SolicitarB.jsp").include(request, response);
+        }else{
+            response.sendRedirect("Inicio.jsp");
         }
+        
     }
 
     //co.conectar();
