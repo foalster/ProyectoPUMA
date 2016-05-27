@@ -44,6 +44,7 @@
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
+            int id = (Integer) sessions.getAttribute("id");
         %>
         <div class="menu">
             <nav>
@@ -90,7 +91,7 @@
                         consulta.desconectar();
 
                         for (int i = 0; i < lista.size(); i++) {
-                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 1)) {
+                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 1 && lista.get(i).getIdPrestamista() != id)) {
                                 nombre = lista.get(i).getIdCalculadora();
                                 lista.get(i).getIdCalculadora();
                                 out.println("<tr>");
