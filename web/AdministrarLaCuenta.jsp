@@ -40,6 +40,7 @@
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
+                    $('#count2').val($(this).data('quantity'));
                 });
             });
         </script>
@@ -82,7 +83,7 @@
                 <li><a data-toggle="pill" href="#menu2">Crear Calculadora</a></li>
                 <li><a data-toggle="pill" href="#menu3">Calculadoras Publicadas</a></li>
                 <li><a data-toggle="pill" href="#menu4">Actualizar Calculadoras</a></li>
-                <li><a data-toggle="pill" href="#menu4">Eliminar Calculadoras</a></li>
+                <li><a data-toggle="pill" href="#menu5">Eliminar Calculadoras</a></li>
             </ul>
 
             <div class="tab-content">
@@ -147,8 +148,10 @@
                 <div id="menu4" class="tab-pane fade">                    
                                     
                     <form method="post" action="EliminarC">                  
-                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>    
-                        <input type="submit" value= "ActualizarCalculadoraC"/><br/><br/>                      
+                        Id:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>    
+                        Marca: <input type="text" name="marca" style="color: #333;" ><br/><br/>    
+                        Modelo: <input type="text" name="modelo" style="color: #333;" ><br/><br/>    
+                        <input type="submit" value= "Actualizar"/><br/><br/>                      
                     </form>         
                     <table style="margin: auto;" border="1">
                         <tr>
@@ -189,7 +192,7 @@
                     <div id="menu5" class="tab-pane fade">                    
                                     
                     <form method="post" action="EliminarC">                  
-                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>    
+                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>    
                         <input type="submit" value= "Eliminar"/><br/><br/>                      
                     </form>         
                     <table style="margin: auto;" border="1">

@@ -6,8 +6,13 @@
 package Servlet;
 
 import Controlador.Conexion;
+import Controlador.Control;
+import Modelo.Calculadora;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,16 +35,14 @@ public class ActualizarCalculadoraC extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();    
-        
+        PrintWriter out = response.getWriter();
         int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));       
         String marca = request.getParameter("marca");
         String modelo = request.getParameter("modelo");        
-        System.out.println(idCalculadora);
-        System.out.println(marca);
-        System.out.println(modelo);
+        Control consulta = new Control();
+        LinkedList<Calculadora> lista = consulta.getCalculadoras(idCalculadora);
         Conexion co = new Conexion();
         co.editCalculadora(idCalculadora, marca, modelo);
         request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
@@ -59,7 +62,11 @@ public class ActualizarCalculadoraC extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ActualizarCalculadoraC.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,7 +80,11 @@ public class ActualizarCalculadoraC extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ActualizarCalculadoraC.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
