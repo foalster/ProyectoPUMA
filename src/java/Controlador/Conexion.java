@@ -22,9 +22,9 @@ public class Conexion {
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private String url = "jdbc:postgresql://localhost:5432/PUMA";
-    private String user = "IS1";
-    private String pass = "hola123";
+    private String url = "jdbc:postgresql://localhost:5433/PUMA";
+    private String user = "postgres";
+    private String pass = "posgre";
     private String drive = "org.postgresql.Driver";
     private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -319,7 +319,7 @@ public class Conexion {
             ps.executeUpdate();
             b = true;
         } catch (Exception ex) {
-            System.out.println("Error al elminar Usuario: " + ex.getMessage());
+            System.out.println("Error al eliminar Usuario: " + ex.getMessage());
         }
         return b;
     }

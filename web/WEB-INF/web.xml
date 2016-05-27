@@ -40,6 +40,10 @@
         <servlet-name>Actualizador</servlet-name>
         <servlet-class>Servlet.Actualizador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarCuentaC</servlet-name>
+        <servlet-class>Servlet.EliminarCuentaC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesionC</servlet-name>
         <url-pattern>/IniciarSesionC</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>Actualizador</servlet-name>
         <url-pattern>/Actualizador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCuentaC</servlet-name>
+        <url-pattern>/EliminarCuentaC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

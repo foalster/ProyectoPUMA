@@ -84,22 +84,24 @@
                 <li><a data-toggle="pill" href="#menu3">Calculadoras Publicadas</a></li>
                 <li><a data-toggle="pill" href="#menu4">Actualizar Calculadoras</a></li>
                 <li><a data-toggle="pill" href="#menu5">Eliminar Calculadoras</a></li>
+                <li><a data-toggle="pill" href="#menu6">Editar Perfil</a></li>
             </ul>
 
             <div class="tab-content">
                 <div id="menu1" class="tab-pane fade in active"><br/><br/>
-                    <form method="post" action="ConsultarCuentaC">
+                    <form method="post" action="ConsultarC">
                         <%
                             ArrayList<Usuario> usuarios = consulta.getUsuarios();
 
                             for (int i = 0; i < usuarios.size(); i++) {
                                 if (usuarios.get(i).getIdUsuario() == id) {
-                                    out.println("Nombre : " + usuarios.get(i).getNombre() + "<br>");
-                                    out.println("Apellido Paterno: " + usuarios.get(i).getApPat() + "<br>");
-                                    out.println("Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
-                                    out.println("Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
-                                    out.println("Genero:  " + usuarios.get(i).getGenero() + "<br>");
-                                    out.println("Correo: " + usuarios.get(i).getEmail() + "<br>");
+                                    
+                                    out.println("Nombre: "+ usuarios.get(i).getNombre() + " <br>");
+                                    out.println("</br>"+"Apellido Paterno: " + usuarios.get(i).getApPat() + " <br>");
+                                    out.println("</br>"+"Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
+                                    out.println("</br>"+"Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
+                                    out.println("</br>"+"Genero:  " + usuarios.get(i).getGenero() + "<br>");
+                                    out.println("</br>"+"Correo: " + usuarios.get(i).getEmail() + "<br>");
 
                                 }
                             }
@@ -229,6 +231,29 @@
                             }
                         %>            
                     </table>        
+                </div>
+                <div id="menu6" class="tab-pane fade"><br/><br/>
+                    <form method="post" action="ActualizarC">
+                        <%
+                            usuarios = consulta.getUsuarios();
+
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                if (usuarios.get(i).getIdUsuario() == id) {
+                                    out.println("Editar cuenta:");
+                                    out.println("<br> </br> "+"Password: "+"<input type=password name=password value=" + usuarios.get(i).getPassword() + " <br>");
+                                    out.println("</br> <br> </br>"+"Fecha de nacimiento: "+"<input type=text name=fechanac value=" + usuarios.get(i).getFechaNac() + " <br>");
+                                    out.println("</br> <br> </br> <br> </br>"+"Correo: "+"<input type=text name=email value=" + usuarios.get(i).getEmail() + " <br>");
+                                    
+
+                                }
+                            }
+                        %>
+                        <br> </br> <input type="submit" name="Actualizar" value="Actualizar">
+                    </form>  
+                    <form method="post" action="EliminarCuentaC">
+                         <br> </br> Desea eliminar su cuenta? (Se eliminaran los datos)
+                         <br> </br> <input type="submit" name="Eliminar Cuenta" value="Eliminar">
+                    </form>
                 </div>
 
             </div>
