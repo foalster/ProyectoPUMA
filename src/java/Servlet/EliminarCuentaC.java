@@ -40,7 +40,7 @@ public class EliminarCuentaC extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         HttpSession session=request.getSession();
-        int id = (Integer) session.getAttribute("id");;               
+        int id = (Integer) session.getAttribute("id");               
         
         if(id != 0){
             co.eliminaUsuario(id);

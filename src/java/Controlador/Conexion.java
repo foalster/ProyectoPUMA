@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Conexion {
-    
+
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
@@ -30,7 +30,7 @@ public class Conexion {
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     //private PreparedStatement pst;
     //private Control ctrl;
-    
+
     public Conexion() {
         try {
             Class.forName(drive);
@@ -39,11 +39,11 @@ public class Conexion {
             System.out.println("Exception: " + ex.getMessage());
         }
     }
-    
+
     public Connection getConexion() {
         return con;
     }
-    
+
     public void conectar() throws Exception {
         try {
             Class.forName(drive);
@@ -52,7 +52,7 @@ public class Conexion {
             System.out.println("Exception: " + ex.getMessage());
         }
     }
-    
+
     public void desconectar() throws Exception {
         try {
             con.close();
@@ -60,7 +60,7 @@ public class Conexion {
             System.out.println("Exception: " + ex.getMessage());
         }
     }
-    
+
     public static boolean validarEmail(String email) {
 
         // Compiles the given regular expression into a pattern.
@@ -69,9 +69,9 @@ public class Conexion {
         // Match the given input against this pattern
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-        
+
     }
-    
+
     public static boolean isFechaValida(String fecha) {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -82,15 +82,15 @@ public class Conexion {
         }
         return true;
     }
-    
+
     public static boolean checkAlpha(String str) {
-        boolean respuesta = false;        
-        if ((str).matches("\\w+\\.?")) {            
-            respuesta = true;            
-        }        
+        boolean respuesta = false;
+        if ((str).matches("\\w+\\.?")) {
+            respuesta = true;
+        }
         return respuesta;
-    }    
-    
+    }
+
     public boolean iniciarSesion(String usuario, String password) throws Exception {
         try {
             ArrayList usuarios = new ArrayList();
@@ -110,7 +110,7 @@ public class Conexion {
         }
         return false;
     }
-    
+
     public ArrayList getUsuarios() throws Exception {
         ArrayList usuarios = new ArrayList();
         try {
@@ -135,7 +135,7 @@ public class Conexion {
         }
         return usuarios;
     }
-    
+
     public ArrayList getId(String usuario) throws Exception {
         ArrayList idUsuario = new ArrayList();
         try {
@@ -152,7 +152,7 @@ public class Conexion {
         }
         return idUsuario;
     }
-    
+
     public LinkedList<Calculadora> getCalculadoras() {
         LinkedList<Calculadora> listaContactos = new LinkedList<Calculadora>();
         try {
@@ -175,7 +175,7 @@ public class Conexion {
         }
         return listaContactos;
     }
-    
+
     public boolean checarUsuario(String usuario, String email) throws Exception {
         try {
             ArrayList usuarios = new ArrayList();
@@ -195,7 +195,7 @@ public class Conexion {
         }
         return true;
     }
-    
+
     public boolean registrar(String usuario, String password, String nombre, String appat, String apmat, String fechanac, String genero, String email) throws Exception {
         try {
             ArrayList usuarios = new ArrayList();
@@ -222,7 +222,7 @@ public class Conexion {
         }
         return true;
     }
-    
+
     public boolean crear(String marca, String modelo, int idUsuario, int tipo) {
         try {
             ArrayList calculadora = new ArrayList();
@@ -245,7 +245,7 @@ public class Conexion {
         }
         return true;
     }
-    
+
     public LinkedList<Calculadora> getCalculadoras(int idprestamista) throws SQLException {
         LinkedList<Calculadora> calculadoras = new LinkedList<Calculadora>();
         try {
@@ -267,7 +267,7 @@ public class Conexion {
         }
         return calculadoras;
     }
-    
+
     public boolean eliminaCalculadora(int idcalculadora) throws SQLException {
         boolean b = false;
         try {
@@ -280,7 +280,7 @@ public class Conexion {
         }
         return b;
     }
-    
+
     public boolean editCalculadora(int id, String marca, String modelo) {
         boolean b = false;
         try {
@@ -294,7 +294,7 @@ public class Conexion {
         }
         return b;
     }
-    
+
     public ArrayList getUsuarioId(String idUsuario) throws SQLException {
         ArrayList usuarios = new ArrayList();
         try {
@@ -310,7 +310,7 @@ public class Conexion {
         }
         return usuarios;
     }
-    
+
     public boolean eliminaUsuario(int idUsuario) throws SQLException {
         boolean b = false;
         try {
@@ -323,7 +323,7 @@ public class Conexion {
         }
         return b;
     }
-    
+
     public boolean editUsuario(int idUsuario, String password, String fechanac, String email) {
         boolean b = false;
         try {
@@ -337,7 +337,7 @@ public class Conexion {
         }
         return b;
     }
-    
+
     public boolean ocupado(int idcalculadora) throws Exception {
         try {
             ArrayList usuarios = new ArrayList();
@@ -349,12 +349,26 @@ public class Conexion {
         }
         return false;
     }
-    
-    
-    
+
+    public boolean ocuparCalculadora(int id) {
+        boolean b = false;
+        try {
+            System.out.println("id a cambiar" + id);
+            String sql = "Update calculadora SET disponible = '" + false + "' where idcalculadora =" + id;
+            System.out.println("modifico");
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            b = true;
+        } catch (Exception ex) {
+            System.out.println("Error al recuperar los datos de la entidad calculadora, id malo"
+                    + ex.getMessage());
+        }
+        return b;
+    }
+
     public static void main(String[] args) {
         Conexion co = new Conexion();
         System.out.println(co.getConexion());
     }
-    
+
 }

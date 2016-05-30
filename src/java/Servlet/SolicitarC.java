@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,6 +61,7 @@ public class SolicitarC extends HttpServlet {
             //String email = co.correo();
             int idC = Integer.parseInt(id);
             int idP;
+
             String email = "";
             LinkedList<Calculadora> lista = consulta.getCalculadoras();
             ArrayList<Usuario> usuarios = consulta.getUsuarios();
@@ -70,12 +72,20 @@ public class SolicitarC extends HttpServlet {
                     modelo = lista.get(i).getModelo();
 
                     for (int j = 0; j < usuarios.size(); j++) {
-                        System.out.println("id Pres" + usuarios.get(j).getIdUsuario());
+                        //  System.out.println("id Pres" + usuarios.get(j).getIdUsuario());
                         if (usuarios.get(j).getIdUsuario() == idP) {
-                            email = usuarios.get(idP - 1).getEmail();
-
-                            break a;
+                            HttpSession session = request.getSession();
+                            int idA = (Integer) session.getAttribute("id");
+                            if (usuarios.get(idP - 1).getIdUsuario() != idA) {
+                                if (co.ocuparCalculadora(idC)) {
+                                    email = usuarios.get(idP - 1).getEmail();
+                                }
+                            } else {
+                                response.sendRedirect("Inicio.jsp");
+                            }
                         }
+
+                        break a;
                     }
                 }
             }
