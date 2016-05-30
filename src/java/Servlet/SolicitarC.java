@@ -77,8 +77,11 @@ public class SolicitarC extends HttpServlet {
                             HttpSession session = request.getSession();
                             int idA = (Integer) session.getAttribute("id");
                             if (usuarios.get(idP - 1).getIdUsuario() != idA) {
-                                if (co.ocuparCalculadora(idC)) {
+                                if (co.ocuparCalculadora(idC) && co.registrarPrestamo(-1, motivo, lugar, 0, 0, idC, idA, tiempo)) {
+
                                     email = usuarios.get(idP - 1).getEmail();
+                                } else {
+                                    response.sendRedirect("Inicio.jsp");
                                 }
                             } else {
                                 response.sendRedirect("Inicio.jsp");
