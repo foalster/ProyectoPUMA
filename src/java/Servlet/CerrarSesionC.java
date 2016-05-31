@@ -34,6 +34,7 @@ public class CerrarSesionC extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         HttpSession session=request.getSession(false);  
+        session.setAttribute("valida", 0);
         if(session != null)
             session.invalidate();
         response.sendRedirect("index.jsp");

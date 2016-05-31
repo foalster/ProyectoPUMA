@@ -21,7 +21,9 @@
     HttpSession sessions = request.getSession(false);
     String usuario = (String) sessions.getAttribute("usuario");
     int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
-
+    int val = (Integer) sessions.getAttribute("valida");
+   
+    
 %>
 <html>
 
@@ -42,14 +44,6 @@
                 calendar.set("date");
             }
         </script>
-        <script>
-            var usuario = <%=usuario.toString()%>
-           
-function myFunction() {
-    alert(usuario);
-}
-</script>
-
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
@@ -62,7 +56,7 @@ function myFunction() {
     <body onload="init()" style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat; font-weight: bold;">
 
 
-<button onclick="myFunction()">Try it</button>        <div class="menu">
+  <div class="menu">
             <nav>
                 <ul>
                     <li><a href="InicioC">PUMA</a></li>
@@ -259,6 +253,7 @@ function myFunction() {
                     <form method="post" action="EliminarCuentaC">
                         <br> </br> Desea eliminar su cuenta? (Se eliminaran los datos)
                         <br> </br> <input type="submit" name="Eliminar Cuenta" value="Eliminar">
+                        <% val= 0; %>
                     </form>
                 </div>
 

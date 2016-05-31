@@ -38,6 +38,7 @@ public class RegistrarC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
+        
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
         String nombre = request.getParameter("nombre");
@@ -57,6 +58,7 @@ public class RegistrarC extends HttpServlet {
                                 co.registrar(usuario, password, nombre, appat, apmat, fechanac, genero, email);
                                 HttpSession session=request.getSession();
                                 session.setAttribute("usuario",usuario); 
+                                session.setAttribute("valida", 0);
                                 request.getRequestDispatcher("Inicio.jsp").include(request, response);
                             }
                         }else{
