@@ -44,17 +44,17 @@ public class RechazarC extends HttpServlet {
 
         //System.out.println("aceptando");
         String idCalc = request.getParameter("idPrestar");
-        
+
         int idC = Integer.parseInt(idCalc);
-        
+
         if (idC != 0) {
             System.out.println("id = " + idC);
             int idCons;
             String email, modelo, motivo, lugar, tiempo;
-            
+
             Control consulta = new Control();
             Conexion co = new Conexion();
-            
+
             LinkedList<Prestamo> lista = co.getPrestamos();
             ArrayList<Usuario> usuarios = consulta.getUsuarios();
             LinkedList<Calculadora> cal = consulta.getCalculadoras();
@@ -75,7 +75,7 @@ public class RechazarC extends HttpServlet {
                             for (int k = 0; k < cal.size(); k++) {
                                 if (lista.get(idC - 1).getIdCalculadora() == cal.get(k).getIdCalculadora()) {
                                     modelo = cal.get(k).getModelo();
-                                    co.rechazarPrestamo(cal.get(k).getIdCalculadora());
+                                    co.rechazarPrestamo(cal.get(k).getIdCalculadora(), idC);
                                     //System.out.println("a punto de enviar correo con: " + email + motivo + lugar + modelo + tiempo);
                                     Email nuevo = new Email();
                                     email = "hola.tu.mauricio@gmail.com";
@@ -84,7 +84,7 @@ public class RechazarC extends HttpServlet {
                                     response.sendRedirect("Prestamo.jsp");
                                     break a;
                                 }
-                                
+
                             }
                             response.sendRedirect("Inicio.jsp");
                         }

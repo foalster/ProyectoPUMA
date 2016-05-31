@@ -45,17 +45,17 @@ public class AceptarC extends HttpServlet {
 
         //System.out.println("aceptando");
         String idCalc = request.getParameter("idPrestar");
-
+        
         int idC = Integer.parseInt(idCalc);
-
+        
         if (idC != 0) {
             System.out.println("id = " + idC);
             int idCons;
             String email, modelo, motivo, lugar, tiempo;
-
+            
             Control consulta = new Control();
             Conexion co = new Conexion();
-
+            
             LinkedList<Prestamo> lista = co.getPrestamos();
             ArrayList<Usuario> usuarios = consulta.getUsuarios();
             LinkedList<Calculadora> cal = consulta.getCalculadoras();
@@ -77,6 +77,8 @@ public class AceptarC extends HttpServlet {
                                 if (lista.get(idC - 1).getIdCalculadora() == cal.get(k).getIdCalculadora()) {
                                     modelo = cal.get(k).getModelo();
                                     //System.out.println("a punto de enviar correo con: " + email + motivo + lugar + modelo + tiempo);
+                                    co.aceptarPrestamo(idC);
+                                    
                                     Email nuevo = new Email();
                                     email = "hola.tu.mauricio@gmail.com";
                                     nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha acepatado su solicitud por el modelo " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Aceptada PUMA");
@@ -84,7 +86,7 @@ public class AceptarC extends HttpServlet {
                                     response.sendRedirect("Prestamo.jsp");
                                     break a;
                                 }
-
+                                
                             }
                             response.sendRedirect("Inicio.jsp");
                         }

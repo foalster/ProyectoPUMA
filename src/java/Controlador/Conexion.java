@@ -405,16 +405,34 @@ public class Conexion {
         return false;
     }
 
-    public void aceptarPrestamo(int idCalculadora) {
-
+    public void aceptarPrestamo(int idPrestamo) {
+        try {
+            PreparedStatement pst = con.prepareStatement("DELETE FROM prestamo WHERE idprestamo=" + idPrestamo);
+            pst.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("error al aceptar" + ex.getMessage());
+        }
     }
 
-    public void rechazarPrestamo(int idCalculadora) {
+    public void rechazarPrestamo(int idCalculadora, int idPrestamo) {
         try {
-            PreparedStatement pst = con.prepareStatement("UPDATE CALCUALDORA SET VALUES(DISPONIBLE = TRUE) WHERE IDCALCULADORA = " + idCalculadora);
+            PreparedStatement pst = con.prepareStatement("UPDATE CALCULADORA SET disponible = '" + true + "'WHERE IDCALCULADORA = " + idCalculadora);
+            pst.executeUpdate();
             System.out.println("actualizado valor = " + idCalculadora);
+            pst = con.prepareStatement("DELETE FROM prestamo WHERE idprestamo=" + idPrestamo);
+            pst.executeUpdate();
+            System.out.println("borrar tabla");
         } catch (Exception ex) {
             System.out.println("ERROR al actualizar" + ex.getMessage());
+        }
+    }
+
+    public void rePonerPrestamo(int idCalculadora) {
+        try {
+            PreparedStatement pst = con.prepareStatement("UPDATE CALCULADORA SET disponible = '" + true + "'WHERE IDCALCULADORA = " + idCalculadora);
+            pst.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("ERROR al reponer" + ex.getMessage());
         }
     }
 
