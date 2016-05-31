@@ -24,9 +24,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
+                    $('#count2').val($(this).data('quantity'));
                 });
             });
         </script>
@@ -119,7 +121,7 @@
                 </div>
                 <div id="menu2" class="tab-pane fade"><br/><br/>
                     <form method="post" action="CancelarPrestamoC">                  
-                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
+                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>
                         <input type="submit" value= "Cancelar"/><br/><br/>   
                     </form>
                     <table style="margin: auto;" border="1">
