@@ -160,8 +160,8 @@
                     </table>
                 </div>
                 <div id="menu3" class="tab-pane fade"><br/><br/>
-                    <form method="post" action="CancelarC">                  
-                        Id del prestamo:  <input type="text" name="idPoner" style="color: #333;" id="count2" value="0" readonly><br/><br/>
+                    <form method="post" action="RePonerC">                  
+                        Id del post:  <input type="text" name="idPoner" style="color: #333;" id="count2" value="0" readonly><br/><br/>
                         <input type="submit" value= "Poner"/><br/><br/>   
                     </form><table style="margin: auto;" border="1">
                         <tr>
@@ -172,23 +172,27 @@
                             <%
                                 boolean visto = false;
                                 for (int i = 0; i < cal.size(); i++) {
-                                    for (int j = 0; j < lista.size(); j++) {
-                                        if (lista.get(j).getIdCalculadora() == cal.get(i).getIdCalculadora()) {
-                                            visto = true;
+                                    if (!cal.get(i).getDisponible()) {
+                                        for (int j = 0; j < lista.size(); j++) {
+                                            if (lista.get(j).getIdCalculadora() == cal.get(i).getIdCalculadora()) {
+                                                visto = true;
+
+                                            }
+                                        }
+                                        if (!visto) {
+                                            prestamo = cal.get(i).getIdCalculadora();
+                                            out.println("<tr>");
+                                            out.println("<td>" + cal.get(i).getMarca() + "</td>");
+                                            out.println("<td>" + cal.get(i).getModelo() + "</td>");
+                                            out.println("<td>" + cal.get(i).getIdCalculadora() + "</td>");
+                                            out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
+                                                    + "</form>"
+                                                    + "</td>");
+                                            prestamo = 0;
+                                            out.println("</tr>");
                                         }
                                     }
-                                    if (!visto) {
-                                        prestamo = cal.get(i).getIdCalculadora();
-                                        out.println("<tr>");
-                                        out.println("<td>" + cal.get(i).getMarca() + "</td>");
-                                        out.println("<td>" + cal.get(i).getModelo() + "</td>");
-                                        out.println("<td>" + cal.get(i).getIdCalculadora() + "</td>");
-                                        out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
-                                                + "</form>"
-                                                + "</td>");
-                                        prestamo = 0;
-                                        out.println("</tr>");
-                                    }
+
                                     visto = false;
                                 }
                             %>
