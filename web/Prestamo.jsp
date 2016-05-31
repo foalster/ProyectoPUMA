@@ -24,7 +24,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
@@ -76,13 +76,13 @@
 
             <div class="tab-content">
                 <div id="menu1" class="tab-pane fade in active"><br/><br/>
-                    
-                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
+
+                    Id del prestamo:  <input type="text" name="idPrestar" style="color: #333;" id="count" value="0" readonly><br/><br/>
                     <form method="post" action="AceptarC">                  
                         <input type="submit" value= "Prestar"/><br/><br/>   
                     </form>
                     <form method="post" action="RechazarC">         
-                    <input type="submit" value= "Rechazar"/><br/><br/>     
+                        <input type="submit" value= "Rechazar"/><br/><br/>     
                     </form>
                     <table style="margin: auto;" border="1">
                         <tr>
@@ -101,7 +101,7 @@
                             for (int i = 0; i < lista.size(); i++) {
                                 for (int j = 0; j < cal.size(); j++) {
                                     if (cal.get(j).getIdCalculadora() == lista.get(i).getIdCalculadora()) {
-                                        prestamo =lista.get(i).getIdPrestamo();
+                                        prestamo = lista.get(i).getIdPrestamo();
                                         out.println("<tr>");
                                         out.println("<td>" + lista.get(i).getIdPrestamo() + "</td>");
                                         out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
@@ -122,21 +122,18 @@
                 </div>
                 <div id="menu2" class="tab-pane fade"><br/><br/>
                     <form method="post" action="CancelarC">                  
-                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>
+                        Id del prestamo:  <input type="text" name="idSacar" style="color: #333;" id="count2" value="0" readonly><br/><br/>
                         <input type="submit" value= "Cancelar"/><br/><br/>   
                     </form>
                     <table style="margin: auto;" border="1">
                         <tr>
-                            <td>Id Prestamo</td>
+                            <td>Marca</td>
+                            <td>Modelo</td>
                             <td>Id Calculadora</td>
-                            <td>Id Prestamista</td>
-                            <td>Motivo</td>
-                            <td>Tiempo</td>
-                            <td>Lugar</td>
                             <td>Agregar</td>
                         </tr>
                         <%
-                            for (int i = 0; i < lista.size(); i++) {
+                            /* for (int i = 0; i < lista.size(); i++) {
                                 for (int j = 0; j < cal.size(); j++) {
                                     if (cal.get(j).getIdCalculadora() == lista.get(i).getIdCalculadora()) {
                                         prestamo =lista.get(i).getIdPrestamo();
@@ -153,6 +150,20 @@
                                         prestamo = 0;
                                         out.println("</tr>");
                                     }
+                                }
+                            }*/
+                            for (int i = 0; i < cal.size(); i++) {
+                                if (cal.get(i).getDisponible()) {
+                                    prestamo =cal.get(i).getIdCalculadora();
+                                    out.println("<tr>");
+                                    out.println("<td>" + cal.get(i).getMarca() + "</td>");
+                                    out.println("<td>" + cal.get(i).getModelo() + "</td>");
+                                    out.println("<td>" + cal.get(i).getIdCalculadora() + "</td>");
+                                    out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
+                                                + "</form>"
+                                                + "</td>");
+                                        prestamo = 0;
+                                        out.println("</tr>");
                                 }
                             }
                         %>  

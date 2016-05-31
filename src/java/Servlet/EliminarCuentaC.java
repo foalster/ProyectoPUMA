@@ -39,26 +39,12 @@ public class EliminarCuentaC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        HttpSession session=request.getSession();
-        int id = (Integer) session.getAttribute("id");               
-        
-        if(id != 0){
-            co.eliminaUsuario(id);
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet NewServlet</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
-                                "<strong>Operacion Realizada!</strong> La cuenta ha sido eliminada.\n" +
-                                "</div>");
-                    out.println("</body>");
-                    out.println("</html>");
-                    request.getRequestDispatcher("index.jsp").include(request, response);
-        }else{
-            request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
+        String idCalc = request.getParameter("idSacar");
+        int idC = Integer.parseInt(idCalc);
+        if(idC != 0){
+            
         }
+        
         
     }
 
