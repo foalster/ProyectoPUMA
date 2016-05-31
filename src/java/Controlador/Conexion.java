@@ -176,7 +176,7 @@ public class Conexion {
         }
         return listaContactos;
     }
-    
+
     public LinkedList<Prestamo> getPrestamos() {
         LinkedList<Prestamo> listadeprestamos = new LinkedList<>();
         try {
@@ -395,18 +395,30 @@ public class Conexion {
 
     public boolean registrarPrestamo(int idPrestamo, String motivo, String lugar, int califPrestamo, int califConsumidor, int idCalculadora, int idConsumidor, String tiempo) {
         try {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO prestamo (idprestamo, motivo, lugarentrega, calificarprestamo, calificarconsumidor, idcalculadora, idconsumidor,tiempo_prestamo) VALUES('" + idPrestamo + "','" + motivo + "','"+ lugar + "'," + califPrestamo + ","+califConsumidor+","+idCalculadora+","+idConsumidor+",'"+tiempo+"');");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO prestamo (idprestamo, motivo, lugarentrega, calificarprestamo, calificarconsumidor, idcalculadora, idconsumidor,tiempo_prestamo) VALUES('" + idPrestamo + "','" + motivo + "','" + lugar + "'," + califPrestamo + "," + califConsumidor + "," + idCalculadora + "," + idConsumidor + ",'" + tiempo + "');");
             //ResultSet rs = pst.executeQuery();
             pst.executeUpdate();
             return true;
-        } catch (Exception ex)  {
-            System.out.println("Error valores de prestamo mal"+ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error valores de prestamo mal" + ex.getMessage());
         }
         return false;
     }
 
+    public void aceptarPrestamo(int idCalculadora) {
 
-public static void main(String[] args) {
+    }
+
+    public void rechazarPrestamo(int idCalculadora) {
+        try {
+            PreparedStatement pst = con.prepareStatement("UPDATE CALCUALDORA SET VALUES(DISPONIBLE = TRUE) WHERE IDCALCULADORA = " + idCalculadora);
+            System.out.println("actualizado valor = " + idCalculadora);
+        } catch (Exception ex) {
+            System.out.println("ERROR al actualizar" + ex.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
         Conexion co = new Conexion();
         System.out.println(co.getConexion());
     }

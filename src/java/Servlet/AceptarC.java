@@ -43,12 +43,13 @@ public class AceptarC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        System.out.println("aceptando");
+        //System.out.println("aceptando");
         String idCalc = request.getParameter("idPrestar");
-        System.out.println("id = " + idCalc);
+
         int idC = Integer.parseInt(idCalc);
-        
+
         if (idC != 0) {
+            System.out.println("id = " + idC);
             int idCons;
             String email, modelo, motivo, lugar, tiempo;
 
@@ -60,34 +61,38 @@ public class AceptarC extends HttpServlet {
             LinkedList<Calculadora> cal = consulta.getCalculadoras();
             a:
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getIdCalculadora() == idC) {
+                if (lista.get(i).getIdPrestamo() == idC) {
                     idCons = lista.get(i).getIdConsumidor();
-                    System.out.println(" 1 ");
+                    //System.out.println(" 1 "+ idCons);
                     for (int j = 0; j < usuarios.size(); j++) {
+                        //System.out.println("J "+j);
                         if (usuarios.get(j).getIdUsuario() == idCons) {
-                            System.out.println(" 2 ");
+                            //System.out.println(" 2 ");
                             email = usuarios.get(j).getEmail();
                             lugar = lista.get(i).getLugar();
                             tiempo = lista.get(i).getTiempo();
                             motivo = lista.get(i).getMotivo();
-                            System.out.println(" 3 ");
+                            //System.out.println(" 3 ");
                             for (int k = 0; k < cal.size(); k++) {
-                                if (idC == cal.get(k).getIdCalculadora()) {
+                                if (lista.get(idC - 1).getIdCalculadora() == cal.get(k).getIdCalculadora()) {
                                     modelo = cal.get(k).getModelo();
-                                    System.out.println("a punto de enviar correo con: " + email + motivo + lugar + modelo + tiempo);
+                                    //System.out.println("a punto de enviar correo con: " + email + motivo + lugar + modelo + tiempo);
                                     Email nuevo = new Email();
                                     email = "hola.tu.mauricio@gmail.com";
                                     nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha acepatado su solicitud por el modelo " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Aceptada PUMA");
+                                    System.out.println("enviado");
                                     response.sendRedirect("Prestamo.jsp");
+                                    break a;
                                 }
 
                             }
+                            response.sendRedirect("Inicio.jsp");
                         }
                     }
                 }
             }
 
-            response.sendRedirect("Incio.jsp");
+            //response.sendRedirect("Inicio.jsp");
         }
     }
 

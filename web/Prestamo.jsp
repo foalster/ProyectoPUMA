@@ -78,12 +78,13 @@
 
                 <li class="active"><a data-toggle="pill" href="#menu1">Prestamos Pendientes</a></li>
                 <li><a data-toggle="pill" href="#menu2">Cancelar Prestamo</a></li>
+                <li><a data-toggle="pill" href="#menu3">Cancelar Prestamo</a></li>
             </ul>
 
             <div class="tab-content">
                 <div id="menu1" class="tab-pane fade in active"><br/><br/>
 
-                    
+
                     <form method="post" action="AceptarC">                  
                         Id del prestamo:  <input type="text" name="idPrestar" style="color: #333;" id="count" value="0" readonly><br/><br/>
                         <input type="submit" value= "Prestar"/><br/><br/>   
@@ -162,20 +163,26 @@
                             }*/
                             for (int i = 0; i < cal.size(); i++) {
                                 if (cal.get(i).getDisponible()) {
-                                    prestamo =cal.get(i).getIdCalculadora();
+                                    prestamo = cal.get(i).getIdCalculadora();
                                     out.println("<tr>");
                                     out.println("<td>" + cal.get(i).getMarca() + "</td>");
                                     out.println("<td>" + cal.get(i).getModelo() + "</td>");
                                     out.println("<td>" + cal.get(i).getIdCalculadora() + "</td>");
                                     out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
-                                                + "</form>"
-                                                + "</td>");
-                                        prestamo = 0;
-                                        out.println("</tr>");
+                                            + "</form>"
+                                            + "</td>");
+                                    prestamo = 0;
+                                    out.println("</tr>");
                                 }
                             }
                         %>  
                     </table>
+                </div>
+                <div id="menu3" class="tab-pane fade"><br/><br/>
+                    <form method="post" action="CancelarC">                  
+                        Id del prestamo:  <input type="text" name="idSacar" style="color: #333;" id="count2" value="0" readonly><br/><br/>
+                        <input type="submit" value= "Cancelar"/><br/><br/>   
+                    </form>
                 </div>
             </div>
     </body>

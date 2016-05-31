@@ -97,6 +97,7 @@ public class SolicitarC extends HttpServlet {
             Email nuevo = new Email();
             email = "hola.tu.mauricio@gmail.com";
             nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha solicitado el objeto " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Pendiente PUMA");
+            System.out.println("correo enviado");
             response.sendRedirect("Inicio.jsp");
         } else {
             response.sendRedirect("Inicio.jsp");
