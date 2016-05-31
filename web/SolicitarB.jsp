@@ -56,6 +56,7 @@
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
+                            <li><a href="Prestamo.jsp">Prestamo </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión </a></li>
                         </ul>
                     </div>
@@ -91,7 +92,7 @@
                         consulta.desconectar();
 
                         for (int i = 0; i < lista.size(); i++) {
-                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 1 && lista.get(i).getIdPrestamista() != id)) {
+                            if (lista.get(i).getDisponible() && lista.get(i).getIdTipo() == 1) {
                                 nombre = lista.get(i).getIdCalculadora();
                                 lista.get(i).getIdCalculadora();
                                 out.println("<tr>");

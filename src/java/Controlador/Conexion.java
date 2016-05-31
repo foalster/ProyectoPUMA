@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Calculadora;
+import Modelo.Prestamo;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -174,6 +175,32 @@ public class Conexion {
             e.printStackTrace();
         }
         return listaContactos;
+    }
+    
+    public LinkedList<Prestamo> getPrestamos() {
+        LinkedList<Prestamo> listadeprestamos = new LinkedList<>();
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM PRESTAMO");
+            while (rs.next()) {
+                Prestamo contacto = new Prestamo();
+                contacto.setIdPrestamo(rs.getInt("idPrestamo"));
+                contacto.setMotivo(rs.getString("motivo"));
+                contacto.setLugar(rs.getString("lugarentrega"));
+                contacto.setCalificacionPrestamo(rs.getInt("calificarprestamo"));
+                contacto.setCalificacionConsumidor(rs.getInt("calificarconsumidor"));
+                contacto.setIdCalculadora(rs.getInt("idcalculadora"));
+                contacto.setIdConsumidor(rs.getInt("idconsumidor"));
+                contacto.setTiempo(rs.getString("tiempo_prestamo"));
+                listadeprestamos.add(contacto);
+                System.out.println();
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listadeprestamos;
     }
 
     public boolean checarUsuario(String usuario, String email) throws Exception {

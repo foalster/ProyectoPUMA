@@ -44,6 +44,7 @@
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
+            int id = (Integer) sessions.getAttribute("id");
         %>
         <div class="menu">
             <nav>
@@ -55,6 +56,7 @@
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
+                            <li><a href="Prestamo.jsp">Prestamo </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión </a></li>
                         </ul>
                     </div>

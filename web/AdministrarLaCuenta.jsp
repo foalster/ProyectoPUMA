@@ -17,13 +17,18 @@
 <%@ page import = "java.util.LinkedList"%> 
 <%! public int idSeleccionada;%>
 <!DOCTYPE html>
+<%
+    HttpSession sessions = request.getSession(false);
+    String usuario = (String) sessions.getAttribute("usuario");
+    int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
 
+%>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/header.css" rel="stylesheet">
-        <link href="css/acordeon.css" rel="stylesheet"> 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -37,6 +42,14 @@
                 calendar.set("date");
             }
         </script>
+        <script>
+            var usuario = <%=usuario.toString()%>
+           
+function myFunction() {
+    alert(usuario);
+}
+</script>
+
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
                     $('#count').val($(this).data('quantity'));
@@ -47,16 +60,9 @@
         <title>PUMA</title>
     </head>
     <body onload="init()" style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat; font-weight: bold;">
-        <%
-            HttpSession sessions = request.getSession(false);
-            String usuario = (String) sessions.getAttribute("usuario");
-            int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
-
-        %>
 
 
-
-        <div class="menu">
+<button onclick="myFunction()">Try it</button>        <div class="menu">
             <nav>
                 <ul>
                     <li><a href="InicioC">PUMA</a></li>
@@ -67,6 +73,7 @@
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
+                            <li><a href="Prestamo.jsp">Prestamo </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -95,13 +102,13 @@
 
                             for (int i = 0; i < usuarios.size(); i++) {
                                 if (usuarios.get(i).getIdUsuario() == id) {
-                                    
-                                    out.println("Nombre: "+ usuarios.get(i).getNombre() + " <br>");
-                                    out.println("</br>"+"Apellido Paterno: " + usuarios.get(i).getApPat() + " <br>");
-                                    out.println("</br>"+"Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
-                                    out.println("</br>"+"Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
-                                    out.println("</br>"+"Genero:  " + usuarios.get(i).getGenero() + "<br>");
-                                    out.println("</br>"+"Correo: " + usuarios.get(i).getEmail() + "<br>");
+
+                                    out.println("Nombre: " + usuarios.get(i).getNombre() + " <br>");
+                                    out.println("</br>" + "Apellido Paterno: " + usuarios.get(i).getApPat() + " <br>");
+                                    out.println("</br>" + "Apellido Materno: " + usuarios.get(i).getApMat() + "<br>");
+                                    out.println("</br>" + "Fecha de nacimiento: " + usuarios.get(i).getFechaNac() + "<br>");
+                                    out.println("</br>" + "Genero:  " + usuarios.get(i).getGenero() + "<br>");
+                                    out.println("</br>" + "Correo: " + usuarios.get(i).getEmail() + "<br>");
 
                                 }
                             }
@@ -112,7 +119,7 @@
                     <form method="post" action="CrearObjeto">
                         <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
                         Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
-                        Tipo: <select name="tipo" required="">
+                        Tipo: <select name="tipo" required="" id="tipo">
                             <option value=0>Seleccione...</option>
                             <option value=1 >Básica</option>
                             <option value=2>Científica</option>
@@ -148,8 +155,8 @@
                     </table>        
                 </div>
                 <div id="menu4" class="tab-pane fade">                    
-                                    
-                    <form method="post" action="EliminarC">                  
+
+                    <form method="post" action="ActualizarCalculadoraC">                  
                         Id:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>    
                         Marca: <input type="text" name="marca" style="color: #333;" ><br/><br/>    
                         Modelo: <input type="text" name="modelo" style="color: #333;" ><br/><br/>    
@@ -190,9 +197,9 @@
                         %>            
                     </table>        
                 </div>
-                    
-                    <div id="menu5" class="tab-pane fade">                    
-                                    
+
+                <div id="menu5" class="tab-pane fade">                    
+
                     <form method="post" action="EliminarC">                  
                         Id <input type="text" name="idCalculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>    
                         <input type="submit" value= "Eliminar"/><br/><br/>                      
@@ -240,10 +247,9 @@
                             for (int i = 0; i < usuarios.size(); i++) {
                                 if (usuarios.get(i).getIdUsuario() == id) {
                                     out.println("Editar cuenta:");
-                                    out.println("<br> </br> "+"Password: "+"<input type=password name=password value=" + usuarios.get(i).getPassword() + " <br>");
-                                    out.println("</br> <br> </br>"+"Fecha de nacimiento: "+"<input type=text name=fechanac value=" + usuarios.get(i).getFechaNac() + " <br>");
-                                    out.println("</br> <br> </br> <br> </br>"+"Correo: "+"<input type=text name=email value=" + usuarios.get(i).getEmail() + " <br>");
-                                    
+                                    out.println("<br> </br> " + "Password: " + "<input type=password name=password value=" + usuarios.get(i).getPassword() + " <br>");
+                                    out.println("</br> <br> </br>" + "Fecha de nacimiento: " + "<input type=text name=fechanac value=" + usuarios.get(i).getFechaNac() + " <br>");
+                                    out.println("</br> <br> </br> <br> </br>" + "Correo: " + "<input type=text name=email value=" + usuarios.get(i).getEmail() + " <br>");
 
                                 }
                             }
@@ -251,8 +257,8 @@
                         <br> </br> <input type="submit" name="Actualizar" value="Actualizar">
                     </form>  
                     <form method="post" action="EliminarCuentaC">
-                         <br> </br> Desea eliminar su cuenta? (Se eliminaran los datos)
-                         <br> </br> <input type="submit" name="Eliminar Cuenta" value="Eliminar">
+                        <br> </br> Desea eliminar su cuenta? (Se eliminaran los datos)
+                        <br> </br> <input type="submit" name="Eliminar Cuenta" value="Eliminar">
                     </form>
                 </div>
 

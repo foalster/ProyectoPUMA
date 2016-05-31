@@ -38,16 +38,46 @@ public class ActualizarCalculadoraC extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));       
+        int idCalculadora = Integer.parseInt(request.getParameter("idCalculadora"));
         String marca = request.getParameter("marca");
-        String modelo = request.getParameter("modelo");        
+        String modelo = request.getParameter("modelo");
         Control consulta = new Control();
-        LinkedList<Calculadora> lista = consulta.getCalculadoras(idCalculadora);
+        LinkedList<Calculadora> lista = consulta.getCalculadoras();
         Conexion co = new Conexion();
-        co.editCalculadora(idCalculadora, marca, modelo);
-        request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getIdCalculadora() == idCalculadora) {
+                if(marca.length() == 0){
+                    marca =lista.get(i).getMarca();
+                }
+                if(modelo.length() == 0){
+                    modelo=lista.get(i).getModelo();
+                }              
+            }
+        }
+        System.out.println("marca:"+marca );
+        System.out.println("modelo: " + modelo);
+                System.out.println("idCalculadora: " + idCalculadora);
+                co.editCalculadora(idCalculadora, marca, modelo);
+                request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
         
-        
+        /*else{
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
+                        "  <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\n" +
+                        "  <span class=\"sr-only\">Error:</span>\n" +
+                        "  Datos proporcionados inválidos\n" +
+                        "</div>");
+            out.println("</body>");
+            out.println("</html>");
+            request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response); 
+        //co.editCalculadora(idCalculadora, marca, modelo);
+        //request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
