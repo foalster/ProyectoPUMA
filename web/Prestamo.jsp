@@ -76,11 +76,12 @@
 
             <div class="tab-content">
                 <div id="menu1" class="tab-pane fade in active"><br/><br/>
-                    <form method="post" action="ValidarPrestamoC">                  
+                    
                         Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
+                    <form method="post" action="AceptarC">                  
                         <input type="submit" value= "Prestar"/><br/><br/>   
                     </form>
-                    <form method="post" action="RechazarPrestamoC">         
+                    <form method="post" action="RechazarC">         
                     <input type="submit" value= "Rechazar"/><br/><br/>     
                     </form>
                     <table style="margin: auto;" border="1">
@@ -120,7 +121,7 @@
                     </table>
                 </div>
                 <div id="menu2" class="tab-pane fade"><br/><br/>
-                    <form method="post" action="CancelarPrestamoC">                  
+                    <form method="post" action="CancelarC">                  
                         Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count2" value="0" readonly><br/><br/>
                         <input type="submit" value= "Cancelar"/><br/><br/>   
                     </form>
