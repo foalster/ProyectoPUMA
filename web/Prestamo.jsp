@@ -74,43 +74,86 @@
 
             <div class="tab-content">
                 <div id="menu1" class="tab-pane fade in active"><br/><br/>
-<table style="margin: auto;" border="1">
+                    <form method="post" action="ValidarPrestamoC">                  
+                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
+                        <input type="submit" value= "Prestar"/><br/><br/>   
+                    </form>
+                    <form method="post" action="RechazarPrestamoC">         
+                    <input type="submit" value= "Rechazar"/><br/><br/>     
+                    </form>
+                    <table style="margin: auto;" border="1">
                         <tr>
-                            <td>Id</td>
+                            <td>Id Prestamo</td>
+                            <td>Id Calculadora</td>
+                            <td>Id Prestamista</td>
                             <td>Motivo</td>
                             <td>Tiempo</td>
-                            <td>Disponible</td>
-                       <td>Agregar</td>
+                            <td>Lugar</td>
+                            <td>Agregar</td>
                         </tr>
                         <%
-                            int nombre = 0;
+                            int prestamo = 0;
                             LinkedList<Prestamo> lista = consulta.getPrestamos();
+                            LinkedList<Calculadora> cal = consulta.getCalculadoras(id);
                             for (int i = 0; i < lista.size(); i++) {
-                                    out.println("<tr>");
-                                    out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
-                                    out.println("<td>" + lista.get(i).getMotivo() + "</td>");
-                                    out.println("<td>" + lista.get(i).getTiempo() + "</td>");
-                                        out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + nombre + " onClick = \"reply(this.id)\"> \n"
+                                for (int j = 0; j < cal.size(); j++) {
+                                    if (cal.get(j).getIdCalculadora() == lista.get(i).getIdCalculadora()) {
+                                        prestamo =lista.get(i).getIdPrestamo();
+                                        out.println("<tr>");
+                                        out.println("<td>" + lista.get(i).getIdPrestamo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
+                                        out.println("<td>" + lista.get(i).getIdConsumidor() + "</td>");
+                                        out.println("<td>" + lista.get(i).getMotivo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getTiempo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getLugar() + "</td>");
+                                        out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
                                                 + "</form>"
                                                 + "</td>");
-                                        nombre = 0;
+                                        prestamo = 0;
                                         out.println("</tr>");
-                                    
+                                    }
+                                }
                             }
-                        %>        
+                        %>  
+                    </table>
                 </div>
-                <div id="menu2" class="tab-pane fade">
-                    <form method="post" action="CrearObjeto">
-                        <br/>Marca: <input type="text" name="marca" style="text-align: center"/><br/><br/>
-                        Modelo: <input type="text" name="modelo" style="text-align: center"/><br/><br/>
-                        Tipo: <select name="tipo" required="" id="tipo">
-                            <option value=0>Seleccione...</option>
-                            <option value=1 >Básica</option>
-                            <option value=2>Científica</option>
-                            <option value=3>Graficadora</option>
-                        </select><br/><br/>
-                        <b><input type="submit" value="Crear"/></b><br/><br/>
+                <div id="menu2" class="tab-pane fade"><br/><br/>
+                    <form method="post" action="CancelarPrestamoC">                  
+                        Id del prestamo:  <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
+                        <input type="submit" value= "Cancelar"/><br/><br/>   
                     </form>
+                    <table style="margin: auto;" border="1">
+                        <tr>
+                            <td>Id Prestamo</td>
+                            <td>Id Calculadora</td>
+                            <td>Id Prestamista</td>
+                            <td>Motivo</td>
+                            <td>Tiempo</td>
+                            <td>Lugar</td>
+                            <td>Agregar</td>
+                        </tr>
+                        <%
+                            for (int i = 0; i < lista.size(); i++) {
+                                for (int j = 0; j < cal.size(); j++) {
+                                    if (cal.get(j).getIdCalculadora() == lista.get(i).getIdCalculadora()) {
+                                        prestamo =lista.get(i).getIdPrestamo();
+                                        out.println("<tr>");
+                                        out.println("<td>" + lista.get(i).getIdPrestamo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getIdCalculadora() + "</td>");
+                                        out.println("<td>" + lista.get(i).getIdConsumidor() + "</td>");
+                                        out.println("<td>" + lista.get(i).getMotivo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getTiempo() + "</td>");
+                                        out.println("<td>" + lista.get(i).getLugar() + "</td>");
+                                        out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
+                                                + "</form>"
+                                                + "</td>");
+                                        prestamo = 0;
+                                        out.println("</tr>");
+                                    }
+                                }
+                            }
+                        %>  
+                    </table>
                 </div>
             </div>
     </body>
