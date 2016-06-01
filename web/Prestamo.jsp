@@ -29,6 +29,42 @@
                 display:none; 
                 visibility:hidden;
             }
+            
+            #form {
+              width: 250px;
+              margin: 0 auto;
+              height: 50px;
+            }
+
+            #form p {
+                text-align: center;
+            }
+
+            #form label {
+                font-size: 100px;
+            }
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            label {
+                color: grey;
+            }
+
+            .clasificacion {
+                direction: ltr;
+                unicode-bidi: bidi-override;
+            }
+
+            label:hover,
+            label:hover ~ label {
+                color: orange;
+            }
+
+            input[type="radio"]:checked ~ label {
+                color: orange;
+            }
         </style>
         <script  type="text/javascript">$(function () {
                 $('input:button').click(function () {
@@ -78,7 +114,8 @@
 
                 <li class="active"><a data-toggle="pill" href="#menu1">Prestamos Pendientes</a></li>
                 <li><a data-toggle="pill" href="#menu2">Cancelar Prestamo</a></li>
-                <li><a data-toggle="pill" href="#menu3">Poner en linea</a></li>
+                <li><a data-toggle="pill" href="#menu3">Historial de Prestamos</a></li>
+                <li><a data-toggle="pill" href="#menu4">Poner en Linea</a></li>
             </ul>
 
             <div class="tab-content">
@@ -159,7 +196,40 @@
                         %>  
                     </table>
                 </div>
+                 
+                    
                 <div id="menu3" class="tab-pane fade"><br/><br/>
+                    <form method="post" action="ConsultarC">
+                        <%
+                            LinkedList<Prestamo> prestamos = consulta.getPrestamos();
+
+                            for (int i = 0; i < prestamos.size(); i++) {
+                                    out.println("Prestamo: "+i+" <br>");
+                                    out.println("Lugar de Prestamo: " + prestamos.get(i).getLugar() + " <br>");
+                                    out.println("</br>" + "Motivo del Prestamo: " + prestamos.get(i).getMotivo() + " <br>");
+                                    out.println("</br>" + "Tiempo del Prestamo: " + prestamos.get(i).getTiempo() + "<br>");  
+                                    out.println("<form>"+
+                                                        " <p class=\"clasificacion\">"+
+                                                        "<input id=\"radio1\" type=\"radio\" name=\"estrellas\" value=\"5\"><!--"+
+                                                         "--><label for=\"radio1\">★</label><!--"+
+                                                         "--><input id=\"radio2\" type=\"radio\" name=\"estrellas\" value=\"4\"><!--"+
+                                                         "--><label for=\"radio2\">★</label><!--"+
+                                                         "--><input id=\"radio3\" type=\"radio\" name=\"estrellas\" value=\"3\"><!--"+
+                                                         "--><label for=\"radio3\">★</label><!--"+
+                                                         "--><input id=\"radio4\" type=\"radio\" name=\"estrellas\" value=\"2\"><!--"+
+                                                         "--><label for=\"radio4\">★</label><!--"+
+                                                         "--><input id=\"radio5\" type=\"radio\" name=\"estrellas\" value=\"1\"><!--"+
+                                                         "--><label for=\"radio5\">★</label>"+
+                                                         " </p>"+
+                                                         " </form>");
+                            }
+                        %>
+                    </form>  
+                </div>   
+                    
+                    
+                    
+                <div id="menu4" class="tab-pane fade"><br/><br/>
                     <form method="post" action="RePonerC">                  
                         Id del post:  <input type="text" name="idPoner" style="color: #333;" id="count2" value="0" readonly><br/><br/>
                         <input type="submit" value= "Poner"/><br/><br/>   
@@ -197,7 +267,13 @@
                                 }
                             %>
                         </tr>
-                </div>
+                </div>        
+                        
+                
+                        
             </div>
+         
+        </div>
+                     
     </body>
 </html>

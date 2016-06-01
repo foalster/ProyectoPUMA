@@ -73,4 +73,13 @@ public class Control {
         return calculadoras;
     }
 
+    public LinkedList getPrestamos(){
+        LinkedList prestamos= new LinkedList();
+        try{
+            prestamos= conexionBD.getPrestamos();
+        } catch (Exception ex){
+            System.out.println("Error en la conexión: " + ex.getMessage());
+        }
+        return prestamos;
+    }
 }
