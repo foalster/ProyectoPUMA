@@ -84,7 +84,7 @@
         <title>Formulario</title>
     </head>
 
-    <body style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat;">
+    <body style="background:url('img/240.png'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat;">
         <!--<p>Me ha llegado <%= request.getAttribute("idSeleccionada")%></p>-->
         <%
             HttpSession sessions = request.getSession(false);
@@ -102,6 +102,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
                             <li><a href="Prestamo.jsp">Prestamo </a></li>
+                            <li><a href="Calificar.jsp">Calificar </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión </a></li>
                         </ul>
                     </div>

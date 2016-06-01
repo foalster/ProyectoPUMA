@@ -21,9 +21,9 @@
     HttpSession sessions = request.getSession(false);
     String usuario = (String) sessions.getAttribute("usuario");
     int id = (Integer) sessions.getAttribute("id");//Obtener Id del Usuario.
-    int val = (Integer) sessions.getAttribute("valida");
-   
-    
+    if (usuario == null) {
+        response.sendRedirect("index.jsp");
+    }
 %>
 <html>
 
@@ -53,10 +53,10 @@
         </script>
         <title>PUMA</title>
     </head>
-    <body onload="init()" style="background:url('img/240.png'); background-size: cover; background-repeat: no-repeat; font-weight: bold;">
+    <body onload="init()" style="background:url('img/240.png'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat; font-weight: bold;">
 
 
-  <div class="menu">
+        <div class="menu">
             <nav>
                 <ul>
                     <li><a href="InicioC">PUMA</a></li>
@@ -68,6 +68,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
                             <li><a href="Prestamo.jsp">Prestamo </a></li>
+                            <li><a href="Calificar.jsp">Calificar </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -253,16 +254,10 @@
                     <form method="post" action="EliminarCuentaC">
                         <br> </br> Desea eliminar su cuenta? (Se eliminaran los datos)
                         <br> </br> <input type="submit" name="Eliminar Cuenta" value="Eliminar">
-                        <% val= 0; %>
                     </form>
                 </div>
 
             </div>
         </div>
-
-
-
-
-
     </body>
 </html>

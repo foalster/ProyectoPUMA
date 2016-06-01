@@ -10,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Modelo.Usuario;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -86,12 +87,54 @@ public class Conexion {
 
     public static boolean checkAlpha(String str) {
         boolean respuesta = false;
-        if ((str).matches("\\w+\\.?")) {
+        if ((str).matches("[a-zA-Z]+\\.?")) {
             respuesta = true;
         }
         return respuesta;
     }
+    
+    public static boolean ValidarFecha(String fechanac){
+        Calendar miCalendario = Calendar.getInstance();
+        Date eldia = miCalendario.getTime();
+        boolean valida = false;
+        int diaHoy =(miCalendario.get(Calendar.DAY_OF_MONTH));
+        int mesHoy =(miCalendario.get(Calendar.MONTH) + 1);
+        int añoHoy =(miCalendario.get(Calendar.YEAR));
 
+        int diaNac = 0;
+        int mesNac = 0;
+        int añoNac = 0;
+        
+        String[] result = (fechanac.split("-"));
+        for (int x = 0; x < result.length; x++) {
+            if(x == 0){
+                añoNac=(Integer.parseInt(result[x]));
+            }
+            if(x == 1){
+                mesNac=(Integer.parseInt(result[x]));
+            }
+            if(x == 2){
+                diaNac=(Integer.parseInt(result[x]));                
+            }
+        }
+        if ((añoNac == añoHoy)) {
+            if (mesNac == mesHoy) {
+                if (diaNac <= diaHoy) {
+                    valida = true;
+                }
+            }
+        }
+        if ((añoNac == añoHoy)) {
+            if (mesNac < mesHoy) {
+                valida = true;
+            }
+        }
+        
+        if((añoNac < añoHoy)){
+            valida =true;
+        }
+        return valida;
+    }
     public boolean iniciarSesion(String usuario, String password) throws Exception {
         try {
             ArrayList usuarios = new ArrayList();
@@ -404,6 +447,45 @@ public class Conexion {
         }
         return false;
     }
+    
+    public LinkedList<Calculadora> getPrestamosCali(int idconsumidor) throws SQLException {
+        LinkedList<Calculadora> calculadoras = new LinkedList<Calculadora>();
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT P.IDCONSUMIDOR, P.CALIFICARPRESTAMO, P.IDPRESTAMO, P.IDCALCULADORA, MARCA, MODELO, TIEMPO_PRESTAMO\n" +
+                    "FROM PRESTAMO P, CALCULADORA C\n" +
+                    "WHERE " + idconsumidor + " = C.IDPRESTAMISTA AND C.IDCALCULADORA = P.IDCALCULADORA");
+            while (rs.next()) {
+                Calculadora contacto = new Calculadora();
+                contacto.setIdPrestamo(rs.getInt("idprestamo"));
+                contacto.setId(rs.getInt("idcalculadora"));
+                contacto.setMarca(rs.getString("marca"));
+                contacto.setModelo(rs.getString("modelo"));
+                contacto.setTiempo(rs.getString("tiempo_prestamo"));
+                contacto.setCalificarPrestamo(rs.getInt("calificarprestamo"));
+                calculadoras.add(contacto);
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception ex) {
+            System.out.println("Error al recuperar los datos de prestamos "
+                    + ex.getMessage());
+        }
+        return calculadoras;
+    }
+    
+    public void calificarCalculadora(int id, int estrellas){
+        boolean b = false;
+        try {
+            String sql = "Update Prestamo Set calificarprestamo = "+ estrellas +" Where idprestamo = " + id;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            b = true;
+        }catch(Exception ex){
+            System.out.println("Error al recuperar los datos de calificar ");
+        }
+    }
+    
 
     public void aceptarPrestamo(int idPrestamo) {
         try {

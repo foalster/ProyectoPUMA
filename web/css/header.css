@@ -127,3 +127,19 @@ form input{
 #tipo{
     color:black;
 }
+
+#somos{
+    width: 79.2%;
+    height: 730px;
+    margin: auto;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+#somosIn{
+    width: 79.2%;
+    margin: auto;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.0);
+}

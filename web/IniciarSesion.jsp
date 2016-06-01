@@ -31,7 +31,7 @@
         <!-- optionally if you need translation for your language then include locale file as mentioned below -->
         <script src="js/star-rating_locale_{lang}.js"></script>
     </head>
-    <body style="background:url('img/236.jpg'); background-size: cover; background-repeat: no-repeat;">
+    <body style="background:url('img/236.jpg'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat;">
         <div class="menu">
             <nav>
                 <ul>
@@ -48,8 +48,6 @@
                     <!--<hr class="colorgraph"><br>-->
                     <p><input type="text" class="form-control" name="usuario" placeholder="Username" required="" autofocus="" /></p>
                     <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-                    <label for="input-1-xs" class="control-label">Rate This</label>
-                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1"  data-size="xs">
                     <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="login" type="Submit">Login</button>
                 </form>			
             </div>

@@ -37,7 +37,7 @@
         </script>
         <title>PUMA</title>
     </head>
-    <body style="background:url('img/calculator.jpg'); background-size: cover; background-repeat: no-repeat; color:#fff">
+    <body style="background:url('img/calculator.jpg'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat; color:#fff">
         <%
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
@@ -57,6 +57,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="AdministrarLaCuenta.jsp">Administrar cuenta</a></li>
                             <li><a href="Prestamo.jsp">Prestamo </a></li>
+                            <li><a href="Calificar.jsp">Calificar </a></li>
                             <li><a href="CerrarSesionC">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -81,7 +82,7 @@
 
                     <div class="item active">
                         <center><a href="SolicitarB.jsp"><img src="img/basica.jpg" width="460" height="345"></a></center>
-                        <div class="carousel-caption">
+                        <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7); right:29.8%;left:29.8%;" >
                             <h3>Básicas</h3>
                             <p>Calculadoras básicas disponibles.</p>
                         </div>
@@ -89,7 +90,7 @@
 
                     <div class="item">
                         <center><a href="SolicitarC.jsp"><img src="img/cientifica.jpg" width="460" height="345"></a></center>
-                        <div class="carousel-caption">
+                        <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7); right:29.8%;left:29.8%;" >
                             <h3>Cientifica</h3>
                             <p>Calculadoras cientificas disponibles.</p>
                         </div>
@@ -97,7 +98,7 @@
 
                     <div class="item">
                         <center><a href="SolicitarG.jsp"><img src="img/graficadora.jpg" width="460" height="345"></a></center>
-                        <div class="carousel-caption">
+                        <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7); right:29.8%;left:29.8%;" >
                             <h3>Gráficadora</h3>
                             <p>Gráficadoras disponibles.</p>
                         </div>

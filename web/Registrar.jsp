@@ -26,22 +26,25 @@
             }
         </script>
     </head>
-    
-    <body onload="init()" style="background:url('img/SignUp_Backg.jpg'); background-size: cover; background-repeat: no-repeat; color: #fff; font-weight: bold" >
-        
+
+    <body onload="init()" style="background:url('img/SignUp_Backg.jpg'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat; color: #fff; font-weight: bold" >
+
         <div class="menu">
             <nav>
                 <ul>
                     <li><a href="index.jsp">PUMA</a></li>
                     <a href="IniciarSesion.jsp">Iniciar Sesión</a>
-                                    
+
                 </ul>
             </nav>
         </div>
-        
+
         <div class = "container" style="background-color: rgba(0, 0, 0, 0.7); margin-top:2%; border-radius:100px; input{color: #000}">
             <div class="wrapper">
                 <h1 class="form-signin-heading">Regístrate</h1><br/>
+                <div style="position:absolute;">
+                    <img src="img/calculator.jpg" width="300px" height="300PX">
+                </div>
                 <form method="post" action="RegistrarC" style="margin-left: 10%">
                     Usuario: <input type="text" name="usuario"/><br/><br/>
                     Contraseña: <input type="password" name="password"/><br/>

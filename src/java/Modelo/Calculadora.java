@@ -17,7 +17,10 @@ public class Calculadora {
     private int idPrestamista;
     private boolean disponible;
     private int idTipo;
-    
+    private String tiempo;
+    private int idPrestamo;
+    private int calificarPrestamo;
+
     public int getIdCalculadora() {
         return idCalculadora;
     }
@@ -66,4 +69,28 @@ public class Calculadora {
         this.idTipo = idTipo;
     }
     
+    public String getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(String tiempo) {
+        this.tiempo = tiempo;
+    }
+    
+    public int getIdPrestamo() {
+        return idPrestamo;
+    }
+
+    public void setIdPrestamo(int idprestamo) {
+        this.idPrestamo = idprestamo;
+    }
+    
+    
+    public int getCalificarPrestamo() {
+        return calificarPrestamo;
+    }
+
+    public void setCalificarPrestamo(int calificarPrestamo) {
+        this.calificarPrestamo = calificarPrestamo;
+    }
 }
