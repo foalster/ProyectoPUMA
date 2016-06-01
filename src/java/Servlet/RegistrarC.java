@@ -102,7 +102,6 @@ public class RegistrarC extends HttpServlet {
                                 request.getRequestDispatcher("Registrar.jsp").include(request, response);
                             }
                         } else {
-                            request.getRequestDispatcher("Registrar.jsp").include(request, response);
                             out.println("<!DOCTYPE html>");
                             out.println("<html>");
                             out.println("<head>");
@@ -116,6 +115,7 @@ public class RegistrarC extends HttpServlet {
                                     + "</div>");
                             out.println("</body>");
                             out.println("</html>");
+                            request.getRequestDispatcher("Registrar.jsp").include(request, response);
                         }
                     } else {
                         out.println("<!DOCTYPE html>");
