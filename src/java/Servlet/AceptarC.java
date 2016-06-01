@@ -44,12 +44,12 @@ public class AceptarC extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         //System.out.println("aceptando");
-        String idCalc = request.getParameter("idPrestar");
+        String idPr = request.getParameter("idPrestar");
         
-        int idC = Integer.parseInt(idCalc);
+        int idP = Integer.parseInt(idPr);
         
-        if (idC != 0) {
-            System.out.println("id = " + idC);
+        if (idP != 0) {
+            System.out.println("id = " + idP);
             int idCons;
             String email, modelo, motivo, lugar, tiempo;
             
@@ -61,7 +61,7 @@ public class AceptarC extends HttpServlet {
             LinkedList<Calculadora> cal = consulta.getCalculadoras();
             a:
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getIdPrestamo() == idC) {
+                if (lista.get(i).getIdPrestamo() == idP) {
                     idCons = lista.get(i).getIdConsumidor();
                     //System.out.println(" 1 "+ idCons);
                     for (int j = 0; j < usuarios.size(); j++) {
@@ -74,13 +74,12 @@ public class AceptarC extends HttpServlet {
                             motivo = lista.get(i).getMotivo();
                             //System.out.println(" 3 ");
                             for (int k = 0; k < cal.size(); k++) {
-                                if (lista.get(idC - 1).getIdCalculadora() == cal.get(k).getIdCalculadora()) {
+                                if (lista.get(i).getIdCalculadora() == cal.get(k).getIdCalculadora()) {
                                     modelo = cal.get(k).getModelo();
                                     //System.out.println("a punto de enviar correo con: " + email + motivo + lugar + modelo + tiempo);
-                                    co.aceptarPrestamo(idC);
+                                    co.aceptarPrestamo(idP);
                                     
                                     Email nuevo = new Email();
-                                    email = "hola.tu.mauricio@gmail.com";
                                     nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha acepatado su solicitud por el modelo " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Aceptada PUMA");
                                     System.out.println("enviado");
                                     response.sendRedirect("Prestamo.jsp");
@@ -88,7 +87,31 @@ public class AceptarC extends HttpServlet {
                                 }
                                 
                             }
+                            
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
+                                "<strong>Bien hecho!</strong> Has enviado un correo al usuario.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
                             response.sendRedirect("Inicio.jsp");
+                            
+            out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
+                                "<strong></strong> No se a logrado aceptar con exito la solicitu.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
                         }
                     }
                 }

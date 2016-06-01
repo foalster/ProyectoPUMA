@@ -39,10 +39,37 @@ public class EliminarCuentaC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String idCalc = request.getParameter("idSacar");
-        int idC = Integer.parseInt(idCalc);
-        if(idC != 0){
+        HttpSession session=request.getSession();
+        int id = (Integer) session.getAttribute("id");
+;
+      
+        if(co.eliminaUsuario(id)){
+         response.sendRedirect("index.jsp");
+         out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title></title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
+                                "<strong>Bien hecho!</strong> Has Eliminado tu cuenta.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
+        }else{
             
+            out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
+                                "<strong></strong> No se a logrado eliminar tu cuenta.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
+         response.sendRedirect("AdministrarLaCuenta.jsp");
         }
         
         

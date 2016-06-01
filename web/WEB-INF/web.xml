@@ -60,6 +60,10 @@
         <servlet-name>CalificarCC</servlet-name>
         <servlet-class>Servlet.CalificarCC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalificarUC</servlet-name>
+        <servlet-class>Servlet.CalificarUC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesionC</servlet-name>
         <url-pattern>/IniciarSesionC</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>CalificarCC</servlet-name>
         <url-pattern>/CalificarCC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificarUC</servlet-name>
+        <url-pattern>/CalificarUC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

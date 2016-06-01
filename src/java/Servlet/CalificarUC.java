@@ -8,9 +8,6 @@ package Servlet;
 import Controlador.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author SONY_VAIO
+ * @author Foalster
  */
-public class CancelarC extends HttpServlet {
+public class CalificarUC extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,45 +29,34 @@ public class CancelarC extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                PrintWriter out = response.getWriter();
-
-        String idCalc = request.getParameter("idSacar");
-
-        int idC = Integer.parseInt(idCalc);
+        
+        PrintWriter out = response.getWriter();
+        
         Conexion co = new Conexion();
-        System.out.println("id calc a borrar " + idC);
-        if (co.eliminaCalculadora(idC)) {
-             out.println("<!DOCTYPE html>");
+        
+        int id = Integer.parseInt(request.getParameter("idPrestamo"));
+        System.out.println("id. " + id);
+        int star = Integer.parseInt(request.getParameter("estrella"));
+        
+        System.out.println(id + " " + star);
+        
+        co.calificarCalculadora(id, star);
+        out.println("<!DOCTYPE html>");
                     out.println("<html>");
                     out.println("<head>");
-                    out.println("<title></title>");            
+                    out.println("<title>Servlet NewServlet</title>");            
                     out.println("</head>");
                     out.println("<body>");
                     out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
-                                "<strong>Bien hecho!</strong> Has cancelado tu calculadora.\n" +
+                                "<strong>Bien hecho!</strong> Has calificado con éxito al usuario.\n" +
                                 "</div>");
                     out.println("</body>");
                     out.println("</html>");
-            response.sendRedirect("Prestamo.jsp");
-        }else {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet NewServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<div class=\"alert alert-danger\" role=\"alert\">\n"
-                        + "  <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\n"
-                        + "  <span class=\"sr-only\">Error:</span>\n"
-                        + "  Email no válido"
-                        + "</div>");
-                out.println("</body>");
-                out.println("</html>");
-                request.getRequestDispatcher("Inicio.jsp").include(request, response);
-            }
-    }
+            request.getRequestDispatcher("Calificar.jsp").include(request, response); 
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -84,11 +70,7 @@ public class CancelarC extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CancelarC.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -102,11 +84,7 @@ public class CancelarC extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CancelarC.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

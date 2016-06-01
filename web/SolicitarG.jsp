@@ -45,6 +45,9 @@
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
             int id = (Integer) sessions.getAttribute("id");
+            if (usuario == null) {
+                response.sendRedirect("index.jsp");
+            }
         %>
         <div class="menu">
             <nav>
@@ -70,7 +73,7 @@
             <div style="margin-left: 10%; position: relative; float: left;">
                 <form id="formulario" method="post" action="SolicitarC" >                 
                     <div id="caja">
-                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0"><br/><br/>
+                        Id <input type="text" name="idCalculadora" style="color: #333;" id="count" value="0" readonly><br/><br/>
                     </div>
                     Tiempo de prestamo: <input type="text"  name="tiempo"/><br/><br/>
                     Lugar de entrega: <input type="text"  name="lugar"/><br/><br/>
@@ -93,7 +96,7 @@
                         consulta.desconectar();
 
                         for (int i = 0; i < lista.size(); i++) {
-                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 3)) {
+                            if (lista.get(i).getDisponible() && (lista.get(i).getIdTipo() == 3)&&id != lista.get(i).getIdPrestamista()) {
                                 nombre = lista.get(i).getIdCalculadora();
                                 lista.get(i).getIdCalculadora();
                                 out.println("<tr>");

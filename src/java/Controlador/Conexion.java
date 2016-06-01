@@ -24,9 +24,9 @@ public class Conexion {
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private String url = "jdbc:postgresql://localhost:5432/PUMA";
-    private String user = "IS1";
-    private String pass = "hola123";
+    private String url = "jdbc:postgresql://localhost:5433/PUMA";
+    private String user = "postgres";
+    private String pass = "posgre";
     private String drive = "org.postgresql.Driver";
     private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -436,9 +436,10 @@ public class Conexion {
         return b;
     }
 
-    public boolean registrarPrestamo(int idPrestamo, String motivo, String lugar, int califPrestamo, int califConsumidor, int idCalculadora, int idConsumidor, String tiempo) {
+    public boolean registrarPrestamo(String motivo, String lugar, int califPrestamo, int califConsumidor, int idCalculadora, int idConsumidor, String tiempo) {
         try {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO prestamo (idprestamo, motivo, lugarentrega, calificarprestamo, calificarconsumidor, idcalculadora, idconsumidor,tiempo_prestamo) VALUES('" + idPrestamo + "','" + motivo + "','" + lugar + "'," + califPrestamo + "," + califConsumidor + "," + idCalculadora + "," + idConsumidor + ",'" + tiempo + "');");
+            System.out.println("Entro al regitro de pretamo");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO prestamo (motivo, lugarentrega, calificarprestamo, calificarconsumidor, idcalculadora, idconsumidor,tiempo_prestamo) VALUES('" + motivo + "','" + lugar + "'," + califPrestamo + "," + califConsumidor + "," + idCalculadora + "," + idConsumidor + ",'" + tiempo + "');");
             //ResultSet rs = pst.executeQuery();
             pst.executeUpdate();
             return true;
@@ -478,6 +479,18 @@ public class Conexion {
         boolean b = false;
         try {
             String sql = "Update Prestamo Set calificarprestamo = "+ estrellas +" Where idprestamo = " + id;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            b = true;
+        }catch(Exception ex){
+            System.out.println("Error al recuperar los datos de calificar ");
+        }
+    }
+    
+    public void calificarUsuario(int id, int estrellas){
+        boolean b = false;
+        try {
+            String sql = "Update Prestamo Set calificarconsumidor = "+ estrellas +" Where idprestamo = " + id;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             b = true;

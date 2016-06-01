@@ -47,6 +47,8 @@ public class ActualizarC extends HttpServlet {
         if (password.length() != 0 && email.length() != 0) {
             if (co.validarEmail(email)) {
                 co.editUsuario(id, password, fechanac, email);
+                
+                request.getRequestDispatcher("Inicio.jsp").include(request, response);
                 out.println("<!DOCTYPE html>");
                     out.println("<html>");
                     out.println("<head>");
@@ -58,9 +60,8 @@ public class ActualizarC extends HttpServlet {
                                 "</div>");
                     out.println("</body>");
                     out.println("</html>");
-                request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
             } else {
-                request.getRequestDispatcher("Registrar.jsp").include(request, response);
+                request.getRequestDispatcher("Inicio.jsp").include(request, response);
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");

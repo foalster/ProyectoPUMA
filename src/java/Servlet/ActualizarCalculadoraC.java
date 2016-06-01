@@ -54,30 +54,36 @@ public class ActualizarCalculadoraC extends HttpServlet {
                 }              
             }
         }
-        System.out.println("marca:"+marca );
-        System.out.println("modelo: " + modelo);
-                System.out.println("idCalculadora: " + idCalculadora);
-                co.editCalculadora(idCalculadora, marca, modelo);
-                request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
+               if( co.editCalculadora(idCalculadora, marca, modelo)){
+                out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title></title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
+                                "<strong>Bien hecho!</strong> Has actualizado tu información de la claucladora.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
+                request.getRequestDispatcher("Inicio.jsp").include(request, response);
+            }else {
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet NewServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<div class=\"alert alert-danger\" role=\"alert\">\n"
+                        + "  <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\n"
+                        + "  <span class=\"sr-only\">Error:</span>\n"
+                        + "  Email no válido"
+                        + "</div>");
+                out.println("</body>");
+                out.println("</html>");
+                request.getRequestDispatcher("Inicio.jsp").include(request, response);
+            }
         
-        /*else{
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
-                        "  <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\n" +
-                        "  <span class=\"sr-only\">Error:</span>\n" +
-                        "  Datos proporcionados inválidos\n" +
-                        "</div>");
-            out.println("</body>");
-            out.println("</html>");
-            request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response); 
-        //co.editCalculadora(idCalculadora, marca, modelo);
-        //request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
-        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

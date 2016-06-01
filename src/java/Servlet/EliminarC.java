@@ -58,6 +58,17 @@ public class EliminarC extends HttpServlet {
                     out.println("</html>");
                     request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
         }else{
+             out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
+                                "<strong></strong> No se a logrado publicar con exito la calculadora.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
             request.getRequestDispatcher("AdministrarLaCuenta.jsp").include(request, response);
         }
         

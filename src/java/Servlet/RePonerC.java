@@ -33,15 +33,39 @@ public class RePonerC extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+                PrintWriter out = response.getWriter();
+
         String idCalc = request.getParameter("idPoner");
         int idC = Integer.parseInt(idCalc);
         if (idC != 0) {
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-success\" role=\"alert\">\n" +
+                                "<strong>Bien hecho!</strong> Has renovado con exito una prestamo.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
             System.out.println("id a poner");
             Conexion co = new Conexion();
             co.rePonerPrestamo(idC);
+            
             response.sendRedirect("Prestamo.jsp");
         } else {
+             out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet NewServlet</title>");            
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
+                                "<strong></strong> No se a logrado publicar con exito la calculadora.\n" +
+                                "</div>");
+                    out.println("</body>");
+                    out.println("</html>");
             response.sendRedirect("Inicio.jsp");
         }
     }

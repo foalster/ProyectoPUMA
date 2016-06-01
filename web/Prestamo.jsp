@@ -90,6 +90,9 @@
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
             int id = (Integer) sessions.getAttribute("id");
+            if (usuario == null) {
+                response.sendRedirect("index.jsp");
+            }
         %>
         <div class="menu">
             <nav>
@@ -115,8 +118,6 @@
 
                 <li class="active"><a data-toggle="pill" href="#menu1">Prestamos Pendientes</a></li>
                 <li><a data-toggle="pill" href="#menu2">Cancelar Prestamo</a></li>
-                <li><a data-toggle="pill" href="#menu3">Historial de Prestamos</a></li>
-                <li><a data-toggle="pill" href="#menu4">Poner en Linea</a></li>
             </ul>
 
             <div class="tab-content">
@@ -139,6 +140,8 @@
                             <td>Motivo</td>
                             <td>Tiempo</td>
                             <td>Lugar</td>
+                            <td>Marca</td>
+                            <td>Modelo</td>
                             <td>Agregar</td>
                         </tr>
                         <%
@@ -156,6 +159,8 @@
                                         out.println("<td>" + lista.get(i).getMotivo() + "</td>");
                                         out.println("<td>" + lista.get(i).getTiempo() + "</td>");
                                         out.println("<td>" + lista.get(i).getLugar() + "</td>");
+                                        out.println("<td>" + cal.get(j).getMarca() + "</td>");
+                                        out.println("<td>" + cal.get(j).getModelo() + "</td>");
                                         out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
                                                 + "</form>"
                                                 + "</td>");
@@ -197,80 +202,6 @@
                         %>  
                     </table>
                 </div>
-                 
-                    
-                <div id="menu3" class="tab-pane fade"><br/><br/>
-                    <form method="post" action="ConsultarC">
-                        <%
-                            LinkedList<Prestamo> prestamos = consulta.getPrestamos();
-
-                            for (int i = 0; i < prestamos.size(); i++) {
-                                    out.println("Prestamo: "+i+" <br>");
-                                    out.println("Lugar de Prestamo: " + prestamos.get(i).getLugar() + " <br>");
-                                    out.println("</br>" + "Motivo del Prestamo: " + prestamos.get(i).getMotivo() + " <br>");
-                                    out.println("</br>" + "Tiempo del Prestamo: " + prestamos.get(i).getTiempo() + "<br>");  
-                                    out.println("<form>"+
-                                                        " <p class=\"clasificacion\">"+
-                                                        "<input id=\"radio1\" type=\"radio\" name=\"estrellas\" value=\"5\"><!--"+
-                                                         "--><label for=\"radio1\">★</label><!--"+
-                                                         "--><input id=\"radio2\" type=\"radio\" name=\"estrellas\" value=\"4\"><!--"+
-                                                         "--><label for=\"radio2\">★</label><!--"+
-                                                         "--><input id=\"radio3\" type=\"radio\" name=\"estrellas\" value=\"3\"><!--"+
-                                                         "--><label for=\"radio3\">★</label><!--"+
-                                                         "--><input id=\"radio4\" type=\"radio\" name=\"estrellas\" value=\"2\"><!--"+
-                                                         "--><label for=\"radio4\">★</label><!--"+
-                                                         "--><input id=\"radio5\" type=\"radio\" name=\"estrellas\" value=\"1\"><!--"+
-                                                         "--><label for=\"radio5\">★</label>"+
-                                                         " </p>"+
-                                                         " </form>");
-                            }
-                        %>
-                    </form>  
-                </div>   
-                    
-                    
-                    
-                <div id="menu4" class="tab-pane fade"><br/><br/>
-                    <form method="post" action="RePonerC">                  
-                        Id del post:  <input type="text" name="idPoner" style="color: #333;" id="count2" value="0" readonly><br/><br/>
-                        <input type="submit" value= "Poner"/><br/><br/>   
-                    </form><table style="margin: auto;" border="1">
-                        <tr>
-                            <td>Marca</td>
-                            <td>Modelo</td>
-                            <td>Id Calculadora</td>
-                            <td>Agregar</td>
-                            <%
-                                boolean visto = false;
-                                for (int i = 0; i < cal.size(); i++) {
-                                    if (!cal.get(i).getDisponible()) {
-                                        for (int j = 0; j < lista.size(); j++) {
-                                            if (lista.get(j).getIdCalculadora() == cal.get(i).getIdCalculadora()) {
-                                                visto = true;
-
-                                            }
-                                        }
-                                        if (!visto) {
-                                            prestamo = cal.get(i).getIdCalculadora();
-                                            out.println("<tr>");
-                                            out.println("<td>" + cal.get(i).getMarca() + "</td>");
-                                            out.println("<td>" + cal.get(i).getModelo() + "</td>");
-                                            out.println("<td>" + cal.get(i).getIdCalculadora() + "</td>");
-                                            out.println("<td>" + "<input type=\"button\" name=\"Solicitar\" id=\"Solicitar\" value=\"Agregar Id\"/ data-quantity=" + prestamo + " onClick = \"reply(this.id)\"> \n"
-                                                    + "</form>"
-                                                    + "</td>");
-                                            prestamo = 0;
-                                            out.println("</tr>");
-                                        }
-                                    }
-
-                                    visto = false;
-                                }
-                            %>
-                        </tr>
-                </div>        
-                        
-                
                         
             </div>
          

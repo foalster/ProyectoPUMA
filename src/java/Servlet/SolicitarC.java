@@ -69,28 +69,38 @@ public class SolicitarC extends HttpServlet {
             for (int i = 0; i < lista.size(); i++) {
                 if (lista.get(i).getIdCalculadora() == idC) {
                     idP = lista.get(i).getIdPrestamista();
+                    System.out.println("idPRe:" + idP);
                     modelo = lista.get(i).getModelo();
 
                     for (int j = 0; j < usuarios.size(); j++) {
                         //  System.out.println("id Pres" + usuarios.get(j).getIdUsuario());
                         if (usuarios.get(j).getIdUsuario() == idP) {
+                            System.out.println("Entro");
                             HttpSession session = request.getSession();
                             int idA = (Integer) session.getAttribute("id");
-                            if (usuarios.get(idP - 1).getIdUsuario() != idA) {
-                                if (co.ocuparCalculadora(idC) && co.registrarPrestamo(1, motivo, lugar, 0, 0, idC, idA, tiempo)) {
-
-                                    email = usuarios.get(idP - 1).getEmail();
-                                    System.out.println("email: " + email);
+                                System.out.println("No entra");
+                                if (co.ocuparCalculadora(idC) && co.registrarPrestamo(motivo, lugar, 0, 0, idC, idA, tiempo)) {
+                                    email = usuarios.get(j).getEmail();
                                     Email nuevo = new Email();
-                                    email = "hola.tu.mauricio@gmail.com";
                                     nuevo.enviarCorreo("Foalster.PUMA@hotmail.com", "serchselacome14milgemas", email, "Se ha solicitado el objeto " + modelo + " \n con motivo " + motivo + " a entregarse en " + lugar + " por " + tiempo, "Solicitud Pendiente PUMA");
                                     System.out.println("correo enviado");
                                     response.sendRedirect("Inicio.jsp");
                                     break a;
-                                } else {
-                                    response.sendRedirect("Inicio.jsp");
-                                }
                             } else {
+                                out.println("<!DOCTYPE html>");
+                                out.println("<html>");
+                                out.println("<head>");
+                                out.println("<title>Servlet NewServlet</title>");
+                                out.println("</head>");
+                                out.println("<body>");
+                                out.println("<div class=\"alert alert-danger\" role=\"alert\">\n"
+                                        + "  <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\n"
+                                        + "  <span class=\"sr-only\">Error:</span>\n"
+                                        + "  Correo electrónico inválido."
+                                        + "</div>");
+                                out.println("</body>");
+                                out.println("</html>");
+                                request.getRequestDispatcher("Registrar.jsp").include(request, response);
                                 response.sendRedirect("Inicio.jsp");
                             }
                         }

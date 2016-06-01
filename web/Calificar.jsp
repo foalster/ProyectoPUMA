@@ -4,6 +4,8 @@
     Author     : Foalster
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Prestamo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Servlet.SolicitarC"%>
@@ -69,6 +71,9 @@
             HttpSession sessions = request.getSession(false);
             String usuario = (String) sessions.getAttribute("usuario");
             int id = (Integer) sessions.getAttribute("id");
+            if (usuario == null) {
+                response.sendRedirect("index.jsp");
+            }
         %>
         <div class="menu">
             <nav>
@@ -89,7 +94,7 @@
             </nav>
         </div>
 
-        <div class="container" style="height: 650px; background-color: rgba(0, 0, 0, 0.7); border-radius: 50px; color: #fff; margin-top: 3%;">
+        <div class="container" style=" overflow: scroll; height: 650px; background-color: rgba(0, 0, 0, 0.7); border-radius: 50px; color: #fff; margin-top: 3%;">
             <h2 style="text-align: center;">¡Es momento de calificar!</h2><br/>
             <ul class="nav nav-pills nav-justified">
 
@@ -135,9 +140,22 @@
                     %>
                     </div>
                     <div id="menu2" class="tab-pane fade">
+                        <%
+                            ArrayList<Usuario> usuarios = consulta.getUsuarios();
+                            
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                    
+                                    out.println("<tr>");
+                                    out.println("<td> "+"Usuario: "+i+" </td>" );
+                                    out.println("<td>"+"Nombre: " + usuarios.get(i).getNombre() + " </td>");
+                                    out.println("<td>" + "Correo: " + usuarios.get(i).getEmail() + "</td>");
+                                    out.println("<td> <input id=\"input-1\" name=\"estrella\" class=\"rating rating-loading\" data-min=\"0\" data-max=\"5\" data-step=\"1\"  data-size=\"xs\"> </td>");
+                                    out.println("<form method=\"post\" action=\"CalificarUC\">"
+                                        + "<input type=\"submit\" value=\"Calificar\"/><br/><br/>");
+                                    out.println("</tr>");
+                            }
                         
-                        <p>No.</p>
-                        
+                        %>
                     </div>
                 </div>
             </div>
